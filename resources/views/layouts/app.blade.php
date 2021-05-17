@@ -34,6 +34,19 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
+                        @role('agente')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{Route('survey')}}">Survey</a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{Route('survey')}}">Survey</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{Route('agenti')}}">Agenti</a>
+                        </li>
+                        @endrole
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -15,6 +15,14 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+
+                    @role('agente')
+                    I am a agent!
+                    @else
+                        I am admin...
+                    @endrole
+
                 </div>
             </div>
         </div>

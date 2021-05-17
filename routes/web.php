@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/survey', [App\Http\Controllers\SurveyController::class, 'index'])->name('survey');
+
+
+Route::get('/agenti', [App\Http\Controllers\AgentController::class, 'index'])->name('agenti');
