@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class AgentController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware(['auth', 'role:super-admin']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,7 @@ class AgentController extends Controller
      */
     public function index()
     {
-        $page_title = 'Utenti';
+        $page_title = 'Agenti';
         $page_description = 'Some description for the page';
         $users = User::all();
         return view('agenti.index', compact('page_title', 'page_description', 'users'));
