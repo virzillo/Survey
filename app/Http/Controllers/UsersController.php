@@ -20,7 +20,7 @@ class UsersController extends Controller
 
     use RedirectsUsers;
 
-    protected $redirectTo = 'admin/utenti';
+    protected $redirectTo = 'agenti';
 
     /**
      * Create a new controller instance.
@@ -60,12 +60,24 @@ class UsersController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
+
+        // event(new Registered($user = $this->create($request->all())));
 
         $notification = array(
             'message' => 'Utente creato con successo!',
             'alert-type' => 'success'
         );
+
+
+        $user= User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+            $ruolo= $request['role'];
+        //assegnazione ruolo in fase iscrizione
+         $user->assignRole($ruolo);
+
 
         return redirect(action('UsersController@index'))->with($notification);
     }
@@ -82,10 +94,11 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $page_title = 'Utenti';
+        $page_title = 'Agenti';
         $page_description = 'Some description for the page';
         $users = User::all();
-        return view('users.index', compact('page_title', 'page_description', 'users'));
+        $roles = Role::all();
+        return view('agenti.index', compact('page_title', 'page_description', 'users','roles'));
     }
 
     /**
@@ -98,7 +111,9 @@ class UsersController extends Controller
         $page_title = 'Crea Utente';
         $page_description = 'Some description for the page';
         $roles = Role::all();
-        return view('backend.users.create', compact('page_title', 'page_description', 'roles'));
+        $users = User::all();
+        return view('agenti.index', compact('page_title', 'page_description', 'users','roles'));
+
     }
 
     /**

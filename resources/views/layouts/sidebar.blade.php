@@ -38,7 +38,7 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Menu</li>
                 <li>
-                    <a href="{{ url('/') }}" class='{{ $page_title === "Dashboard" ? "mm-active" : "" }}'>
+                    <a href="{{ url('/home') }}" class='{{ $page_title === "Dashboard" ? "mm-active" : "" }}'>
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Dashboard
                     </a>
@@ -50,17 +50,18 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{Route('domande')}}"  class='{{ $page_title === "Domande" ? "mm-active" : "" }}' >
+                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        Modifica domande
+                    </a>
+                </li>
+                <li>
                     <a href="{{Route('agenti')}}" class='{{ $page_title === "Agenti" ? "mm-active" : "" }}' >
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Agenti
                     </a>
                 </li>
-                <li>
-                    <a href="elements-buttons-standard.html"  class='{{ $page_title === "Buttons" ? "mm-active" : "" }}'>
-                        <i class="metismenu-icon"></i>
-                        Buttons
-                    </a>
-                </li>
+
             </ul>
         </div>
     </div>

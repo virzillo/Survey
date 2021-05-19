@@ -23,7 +23,19 @@ Route::group(['middleware' => ['role:super-admin']], function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/survey', [App\Http\Controllers\SurveyController::class, 'index'])->name('survey');
-    Route::get('/agenti', [App\Http\Controllers\AgentController::class, 'index'])->name('agenti');
+    Route::get('/domande', [App\Http\Controllers\SurveyController::class, 'domande'])->name('domande');
+
+    // Route::get('/agenti', [App\Http\Controllers\AgentController::class, 'index'])->name('agenti');
+
+
+    Route::get('/agenti',[App\Http\Controllers\UsersController::class, 'index'])->name('agenti');
+    Route::get('/agenti/inserisci', [App\Http\Controllers\UsersController::class, 'create']);
+    Route::post('/agenti', [App\Http\Controllers\UsersController::class, 'register'])->name('crea.utente');
+    Route::get('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'show'])->name('utenti.profilo');
+    Route::put('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'update'])->name('modifica.utente');
+    Route::delete('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'destroy'])->name('elimina.utente');
+
+
 });
 
 

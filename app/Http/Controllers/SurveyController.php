@@ -27,6 +27,15 @@ class SurveyController extends Controller
         return view('survey.index', compact('page_title', 'page_description', 'users'));
     }
 
+    public function domande()
+    {
+        $page_title = 'Domande';
+        $page_description = 'Some description for the page';
+        $users = User::all();
+        return view('survey.create', compact('page_title', 'page_description', 'users'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
