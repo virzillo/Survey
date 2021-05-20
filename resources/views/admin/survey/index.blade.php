@@ -89,7 +89,9 @@
             <div class="col-lg-12">
                 <div class="main-card mb-3 card">
                 <div class="card-body"><h5 class="card-title">Crea Survey</h5>
-                    <form class="">
+                    <form method="POST" action="{{ route('survey.store') }}">
+
+                        @csrf
                         <div class="form-row">
                             <div class="col-md-4">
                                 <div class="position-relative form-group"><label for="" class="">Titolo</label>
@@ -97,7 +99,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="position-relative form-group"><label for="" class="">Descrizione</label>
-                                    <input name="descr" id="" placeholder=" " type="text" class="form-control"></div>
+                                    <input name="descrizione" id="" placeholder=" " type="text" class="form-control"></div>
                             </div>
                             <div class="col-md-2">
                             <div class="position-relative form-group"><label for="" class="">Limite</label>
@@ -119,7 +121,7 @@
                             </div>
                         </div> --}}
 
-                        <button class="mt-2 btn btn-primary">Crea</button>
+                        <button type="submit" class="mt-2 btn btn-primary">Crea</button>
                     </form>
                 </div>
             </div>
@@ -135,24 +137,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                                @foreach ($surveys as $survey)
+                                <tr>
+                                    <th scope="row">{{$survey->id}}</th>
+                                    <td>{{$survey->titolo}}</td>
+                                    <td>{{$survey->descrizione}}</td>
+                                    <td>{{$survey->limite}}</td>
+                                    <td><a href="{{route('questions.show', $survey->id )}}" >modifica domande</a></td>
+
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

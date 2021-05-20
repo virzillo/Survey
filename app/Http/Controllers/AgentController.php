@@ -25,6 +25,7 @@ class AgentController extends Controller
         $page_title = 'Agenti';
         $page_description = 'Some description for the page';
         $users = User::all();
+
         return view('agenti.index', compact('page_title', 'page_description', 'users'));
     }
 

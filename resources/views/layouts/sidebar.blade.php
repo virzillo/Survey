@@ -37,6 +37,10 @@
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Menu</li>
+
+                @role('agente')
+                I am a agent!
+                @else
                 <li>
                     <a href="{{ url('/home') }}" class='{{ $page_title === "Dashboard" ? "mm-active" : "" }}'>
                         <i class="metismenu-icon pe-7s-rocket"></i>
@@ -50,7 +54,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{Route('domande')}}"  class='{{ $page_title === "Domande" ? "mm-active" : "" }}' >
+                    <a href="{{Route('survey')}}"  class='{{ $page_title === "Domande" ? "mm-active" : "" }}' >
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Modifica domande
                     </a>
@@ -61,6 +65,9 @@
                         Agenti
                     </a>
                 </li>
+                @endrole
+
+
 
             </ul>
         </div>

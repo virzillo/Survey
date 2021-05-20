@@ -37,6 +37,7 @@
         </div>
     </div>
     @include('layouts.script')
+    @stack('script')
 </body>
 
 </html>

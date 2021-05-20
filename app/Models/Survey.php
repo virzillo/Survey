@@ -2,10 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Question;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Survey extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    // protected $fillable = ['titolo', 'descrizione', 'limite'];
+    // protected $dates = ['deleted_at'];
+    // protected $table = 'survey';
+
+    public function questions() {
+      return $this->hasMany(Question::class);
+    }
+
+    // public function user() {
+    //   return $this->belongsTo(User::class);
+    // }
+
+    // public function answers() {
+    //   return $this->hasMany(Answer::class);
+    // }
+
+
 }

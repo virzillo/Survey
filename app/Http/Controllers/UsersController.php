@@ -98,7 +98,7 @@ class UsersController extends Controller
         $page_description = 'Some description for the page';
         $users = User::all();
         $roles = Role::all();
-        return view('agenti.index', compact('page_title', 'page_description', 'users','roles'));
+        return view('admin.agenti.index', compact('page_title', 'page_description', 'users','roles'));
     }
 
     /**
@@ -112,7 +112,7 @@ class UsersController extends Controller
         $page_description = 'Some description for the page';
         $roles = Role::all();
         $users = User::all();
-        return view('agenti.index', compact('page_title', 'page_description', 'users','roles'));
+        return view('admin.agenti.index', compact('page_title', 'page_description', 'users','roles'));
 
     }
 
