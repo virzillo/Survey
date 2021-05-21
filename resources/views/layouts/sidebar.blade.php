@@ -76,7 +76,7 @@
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Agenti
                     </a>
-                    <ul class="mm-collapse mm-show" style="">
+                    {{-- <ul class="mm-collapse mm-show" style="">
                         <li>
                             <a href="{{Route('agenti')}}" class='{{ $page_title === "Agenti" ? "mm-active" : "" }}'>
                                 <i class="metismenu-icon"></i>
@@ -93,7 +93,7 @@
                             </a>
                         </li>
 
-                    </ul>
+                    </ul> --}}
                 </li>
                 @endrole
 
