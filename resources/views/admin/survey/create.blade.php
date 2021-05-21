@@ -3,7 +3,7 @@
 @section('content')
 <div class="app-main__outer">
     <div class="app-main__inner">
-        <div class="app-page-title">
+        {{-- <div class="app-page-title">
             <div class="page-title-wrapper">
                 <div class="page-title-heading">
                     <div class="page-title-icon">
@@ -16,7 +16,7 @@
                 </div>
 
             </div>
-        </div>
+        </div> --}}
 
         <div class="row">
             <div class="col-md-12 col-lg-12">

@@ -29,4 +29,14 @@ class HomeController extends Controller
         return view('dashboard', compact('page_title', 'page_description'));
 
     }
+
+    public function anagrafica()
+    {
+        $page_title = 'Anagrafica';
+        $page_description = 'Some description for the page';
+
+        return view('agent.anagrafica.index', compact('page_title', 'page_description'));
+
+    }
+
 }

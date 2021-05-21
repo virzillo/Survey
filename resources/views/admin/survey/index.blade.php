@@ -99,15 +99,15 @@
                         <div class="form-row">
                             <div class="col-md-4">
                                 <div class="position-relative form-group"><label for="" class="">Titolo</label>
-                                    <input name="titolo" id="" placeholder="inserisci titolo survey" type="text" class="form-control"></div>
+                                    <input name="titolo" id="" placeholder="inserisci titolo survey" type="text" class="form-control" required></div>
                             </div>
                             <div class="col-md-6">
                                 <div class="position-relative form-group"><label for="" class="">Descrizione</label>
-                                    <input name="descrizione" id="" placeholder=" " type="text" class="form-control"></div>
+                                    <input name="descrizione" id="" placeholder=" " type="text" class="form-control" required></div>
                             </div>
                             <div class="col-md-2">
                             <div class="position-relative form-group"><label for="" class="">Limite</label>
-                                <input name="limite" id="" placeholder="numero max" type="number" class="form-control"></div>
+                                <input name="limite" id="" placeholder="numero max" type="number" class="form-control" required></div>
                             </div>
                         </div>
                         {{-- <div class="position-relative form-group"><label for="exampleAddress" class="">Limite</label>

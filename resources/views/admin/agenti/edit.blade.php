@@ -17,21 +17,23 @@
 
             </div>
         </div>
-@include('layouts.flashmessage')
+        @include('layouts.flashmessage')
+
         <div class="row">
             <div class="col-md-8">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <h5 class="card-title">CREA NUOVO AGENTE</h5>
+                        <h5 class="card-title">MODIFICA AGENTE</h5>
 
-                        <form method="POST" action="{{ route('agente.store') }}">
+                        <form method="POST" action="{{ route('agente.update' , $user->id) }}">
+                            @method('PUT')
                             @csrf
                             <div class="form-row">
                                 <div class="col-md-6">
                                         <div class="position-relative form-group">
                                             <label for="exampleEmail" class="">Nome</label>
                                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                                name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                                name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
 
                                             @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -44,7 +46,7 @@
                                     <div class="position-relative form-group">
                                         <label for="exampleEmail" class="">Email</label>
                                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                            name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            name="email" value="{{ $user->email }}" required autocomplete="email">
 
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -80,6 +82,8 @@
                                     <div class="position-relative form-group">
                                         <label for="examplePassword" class="">Seleziona ruolo</label>
                                         <select class="form-control kt-select2 select2" id="kt_select2_1" name="role">
+                                            <option value="{{$user->getRoleNames()->first()}}">{{$user->getRoleNames()->first()}}</option>
+
                                             @foreach ($roles as $role)
                                             <option value="{{$role->name}}">{{$role->name}}</option>
                                             @endforeach
@@ -89,7 +93,7 @@
 
                                 </div>
                             </div>
-                            <button type="submit" class="mt-1 btn btn-primary">Inserisci</button>
+                            <button type="submit" class="mt-1 btn btn-primary">Modifica</button>
                         </form>
                     </div>
                 </div>
@@ -148,6 +152,7 @@
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -160,28 +165,3 @@
 @endsection
 
 
-@push('script')
-<script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-
-    $("button#confirm-delete").click(function(e) {
-        event.preventDefault();
-        Swal.fire({
-            title: "Sei sicuro?",
-            text: "Stai per eliminare un record!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Si!!"
-        }).then(function(result) {
-            if (result.value) {
-                $("#form-delete").submit();
-            }
-        });
-    });
-
-</script>
-@endpush

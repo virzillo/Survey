@@ -39,12 +39,7 @@
                 <li class="app-sidebar__heading">Menu</li>
 
                 @role('agente')
-                <li>
-                    <a href="{{ url('/home') }}" class='{{ $page_title === "Dashboard" ? "mm-active" : "" }}'>
-                        <i class="metismenu-icon pe-7s-rocket"></i>
-                        Dashboard
-                    </a>
-                </li>
+
                 <li>
                     <a href="{{Route('anagrafica')}}"  class='{{ $page_title === "Anagrafica" ? "mm-active" : "" }}' >
                         <i class="metismenu-icon pe-7s-rocket"></i>
@@ -70,11 +65,35 @@
                         Modifica domande
                     </a>
                 </li> --}}
-                <li>
+                {{-- <li>
                     <a href="{{Route('agenti')}}" class='{{ $page_title === "Agenti" ? "mm-active" : "" }}' >
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Agenti
                     </a>
+                </li> --}}
+                <li class='{{ $page_title === "Agenti" ? "mm-active" : "" }}' >
+                    <a href="{{Route('agenti')}}" >
+                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        Agenti
+                    </a>
+                    <ul class="mm-collapse mm-show" style="">
+                        <li>
+                            <a href="{{Route('agenti')}}" class='{{ $page_title === "Agenti" ? "mm-active" : "" }}'>
+                                <i class="metismenu-icon"></i>
+                                Visualizza
+                            </a>
+                        </li>
+
+                    </ul>
+                    <ul class="mm-collapse mm-show" style="">
+                        <li>
+                            <a href="" class='{{ $page_title === "Modifica Agente" ? "mm-active" : "" }}'>
+                                <i class="metismenu-icon"></i>
+                                Modifica Agente
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
                 @endrole
 

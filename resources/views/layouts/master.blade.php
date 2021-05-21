@@ -42,8 +42,8 @@
     @stack('script')
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-        @if(Session::has('message'))
-        <script>
+    <script>
+            @if(Session::has('message'))
         var type = "{{ Session::get('alert-type') }}";
         switch(type){
             case 'info':
@@ -62,8 +62,8 @@
                 toastr.error("{{ Session::get('message') }}");
                 break;
         }
-        </script>
         @endif
+        </script>
 </body>
 
 </html>

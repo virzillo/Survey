@@ -191,7 +191,8 @@ class QuestionsController extends Controller
             //     [SurveyController::class, 'index'])->with(
             //         ['id' => $id , 'notification' => $notification ]
             //     );
-         return view('admin.questions.show', compact('page_title', 'page_description', 'survey','surveys','questions','id','notification'));
+            //return back()->with($notification);
+         return view('admin.questions.show', compact('page_title', 'page_description', 'survey','surveys','questions','id','notification'))->with($notification);
 
     }
 

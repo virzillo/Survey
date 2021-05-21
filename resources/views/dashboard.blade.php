@@ -2,7 +2,9 @@
 
 @section('content')
 
+@role('agente')
 
+@else
 <div class="app-main__outer">
     <div class="app-main__inner">
         <div class="app-page-title">
@@ -383,6 +385,6 @@
        {{-- @include('layouts.footer') --}}
     </div>
 </div>
-
+@endrole
 
 @endsection

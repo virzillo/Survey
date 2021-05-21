@@ -37,7 +37,12 @@ Route::group(['middleware' => ['role:super-admin|agente']], function () {
     Route::get('/questions/{id}', [App\Http\Controllers\QuestionsController::class, 'show'])->name('questions.show');
     Route::put('/questions/{id}/update', 'QuestionsController@update')->name('questions.update');
 
-    Route::get('/anagrafica',[App\Http\Controllers\HomeController::class, 'anagrafica'])->name('anagrafica');
+    Route::get('/anagrafica',[App\Http\Controllers\AnagraficaController::class, 'index'])->name('anagrafica');
+    Route::post('/anagrafica', [App\Http\Controllers\AnagraficaController::class, 'store'])->name('anagrafica.store');
+
+    Route::get('/anagrafica/{id}', [App\Http\Controllers\AnagraficaController::class, 'edit'])->name('anagrafica.edit');
+    Route::put('/anagrafica/{id}', [App\Http\Controllers\AnagraficaController::class, 'update'])->name('anagrafica.update');
+    Route::delete('/anagrafica/{id}', [App\Http\Controllers\AnagraficaController::class, 'destroy'])->name('anagrafica.delete');
     // Route::get('/domande', [App\Http\Controllers\SurveyController::class, 'domande'])->name('domande');
 
 
@@ -46,10 +51,10 @@ Route::group(['middleware' => ['role:super-admin|agente']], function () {
 
     Route::get('/agenti',[App\Http\Controllers\UsersController::class, 'index'])->name('agenti');
     Route::get('/agenti/inserisci', [App\Http\Controllers\UsersController::class, 'create']);
-    Route::post('/agenti', [App\Http\Controllers\UsersController::class, 'register'])->name('crea.utente');
-    Route::get('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'show'])->name('utenti.profilo');
-    Route::put('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'update'])->name('modifica.utente');
-    Route::delete('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'destroy'])->name('elimina.utente');
+    Route::post('/agenti', [App\Http\Controllers\UsersController::class, 'register'])->name('agente.store');
+    Route::get('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'edit'])->name('agente.edit');
+    Route::put('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'update'])->name('agente.update');
+    Route::delete('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'destroy'])->name('agente.delete');
 
 
 });

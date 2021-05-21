@@ -78,8 +78,8 @@ class UsersController extends Controller
         //assegnazione ruolo in fase iscrizione
          $user->assignRole($ruolo);
 
-
-        return redirect(action('UsersController@index'))->with($notification);
+         return back()->with($notification);
+       // return redirect(action('UsersController@index'))->with($notification);
     }
 
 
@@ -138,8 +138,9 @@ class UsersController extends Controller
         $page_title = 'Visualizza Utente';
         $page_description = 'Some description for the page';
         $user = User::where('id', $id)->first();
+        $users = User::all();
         $roles = Role::all();
-        return view('backend.users.show', compact('page_title', 'page_description', 'user','roles'));
+        return view('admin.agenti.show', compact('page_title', 'page_description', 'user','roles','users'));
     }
 
     /**
@@ -150,10 +151,12 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $page_title = 'Modifica Utente';
+        $page_title = 'Modifica Agente';
         $page_description = 'Some description for the page';
-        $user = User::find($id);
-        return view('backend.users.edit', compact('page_title', 'page_description', 'user'));
+        $user = User::where('id', $id)->first();
+        $users = User::all();
+        $roles = Role::all();
+        return view('admin.agenti.edit', compact('page_title', 'page_description', 'user','roles','users'));
     }
 
     /**
@@ -189,11 +192,23 @@ class UsersController extends Controller
 
         $user->save();
 
+        $ruolo= $request['role'];
+        //assegnazione ruolo in fase iscrizione
+        $user->syncRoles($ruolo);
+
         $notification = array(
-            'message' => 'Servizio modificato con successo!',
+            'message' => 'Agente modificato con successo!',
             'alert-type' => 'success'
         );
-        return redirect(action('ServiceController@index'))->with($notification);
+
+        $page_title = 'Modifica Agente';
+        $page_description = 'Some description for the page';
+        $user = User::where('id', $id)->first();
+        $users = User::all();
+        $roles = Role::all();
+        return back()->with($notification);
+       // return view('admin.agenti.edit', compact('page_title', 'page_description', 'user','roles','users','notification'))->with('status', 'Profile updated!');
+        //return redirect(action('ServiceController@index'))->with($notification);
     }
 
     /**
@@ -205,11 +220,10 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        //elimina utente e immagine associata ad esso
-        // Storage::delete('public/user_image/'.$user->user_image);
+
 
         $notification = array(
-            'message' => 'Utente eliminato con successo!',
+            'message' => 'Agente eliminato con successo!',
             'alert-type' => 'success'
         );
         return back()->with($notification);

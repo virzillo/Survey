@@ -33,7 +33,7 @@ class LoginController extends Controller
         $role =Auth::user()->getRoleNames()->first();
         switch ($role) {
           case 'agente':
-            return '/home';
+            return '/anagrafica';
             break;
           default:
             return '/home';
