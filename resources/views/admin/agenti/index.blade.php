@@ -120,9 +120,7 @@
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->getRoleNames()->first()}}</td>
                                         <td class="warning" >
-                                            <form action="{{route('agente.destroy', $user->id)}}" method="POST"
-                                                id="form-delete">
-
+                                            <form action="{{route('agente.destroy', $user->id)}}" method="POST" id="form-delete">
                                                 @method('delete')
                                                 @csrf
                                                 <a href="{{route('agente.edit',$user->id )}}"
@@ -132,9 +130,9 @@
                                                         <i class="fa fa-cog icon-gradient bg-mean-fruit"> </i>
                                                     </span>
                                                 </a>
-                                                <button type="button"
+                                                <button type="submit"
                                                     class="btn btn-icon btn-light btn-hover-danger btn-sm "
-                                                    id="confirm-delete">
+                                                    id="confirm-delete" onclick="ConfirmDelete()">
                                                     <span class="svg-icon svg-icon-md">
                                                         <i class="fa fa-archive icon-gradient bg-sunny-morning"> </i>
                                                     </span>
@@ -163,6 +161,17 @@
 @push('script')
 
 <script>
+function ConfirmDelete()
+{
+  var x = confirm("Are you sure you want to delete?");
+  if (x)
+      return true;
+  else
+    return false;
+}
+</script>
+{{--
+<script>
 
     $("button#confirm-delete").click(function(e) {
         event.preventDefault();
@@ -179,5 +188,5 @@
         });
     });
 
-</script>
+</script> --}}
 @endpush

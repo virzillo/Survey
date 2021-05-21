@@ -90,8 +90,22 @@ class AgentController extends Controller
      * @param  \App\Models\Agent  $agent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Agent $agent)
+    public function dsestroy(Agent $agent)
     {
         //
     }
+
+    public function destroy($id)
+    {
+        dd($id);
+        User::find($id)->delete();
+
+
+        $notification = array(
+            'message' => 'Agente eliminato con successo!',
+            'alert-type' => 'success'
+        );
+        return back()->with($notification);
+    }
+
 }

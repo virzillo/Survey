@@ -217,10 +217,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idd)
     {
-        dd($id);
-        User::find($id)->delete();
+        dd($idd);
+        User::find($idd)->delete();
 
 
         $notification = array(

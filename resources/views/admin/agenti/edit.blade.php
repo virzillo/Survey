@@ -137,7 +137,7 @@
                                                 </a>
                                                 <button type="button"
                                                     class="btn btn-icon btn-light btn-hover-danger btn-sm "
-                                                    id="confirm-delete">
+                                                    id="confirm-delete" onclick="ConfirmDelete()">
                                                     <span class="svg-icon svg-icon-md">
                                                         <i class="fa fa-archive icon-gradient bg-sunny-morning"> </i>
                                                     </span>
@@ -165,8 +165,17 @@
 
 
 @push('script')
-
 <script>
+    function ConfirmDelete()
+    {
+      var x = confirm("Sei sicuro? Stai per eliminare un record!");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script>
+{{-- <script>
 
     $("button#confirm-delete").click(function(e) {
         event.preventDefault();
@@ -183,5 +192,5 @@
         });
     });
 
-</script>
+</script> --}}
 @endpush
