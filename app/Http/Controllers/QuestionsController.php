@@ -85,16 +85,16 @@ class QuestionsController extends Controller
         $page_title = 'Domande';
         $page_description = 'Some description for the page';
 
-        // $notification = array(
-        //     'message' => 'Survey inserito con successo!',
-        //     'alert-type' => 'success'
-        // );
+        $notification = array(
+            'message' => 'Domanda inserito con successo!',
+            'alert-type' => 'success'
+        );
 
 
         $id=$request->get('survey_id');
         $survey=Survey::find($id);
         $questions=Question::where('survey_id','=',$id)->get();
-        return view('admin.questions.show', compact('page_title', 'page_description', 'survey','questions'));
+        return view('admin.questions.show', compact('page_title', 'page_description', 'survey','questions','notification'));
 
 
 
@@ -168,22 +168,30 @@ class QuestionsController extends Controller
             $questions->opzione3=$request->get('opzione3');
             $questions->opzione4=$request->get('opzione4');
             $questions->opzione5=$request->get('opzione5');
+            $questions->opzione6=$request->get('opzione6');
 
 
             $questions->save();
 
-            $notification = array(
-                'message' => 'Articolo modificato con successo!',
-                'alert-type' => 'success'
-            );
+
             $page_title = 'Domande';
             $page_description = 'Some description for the page';
             $id=$request->get('survey_id');
             $survey=Survey::find($id);
             $questions=Question::where('survey_id','=',$id)->get();
 
-           return redirect(action('SurveyController@index'))->with($id);
-         // return view('admin.survey.show', compact('page_title', 'page_description', 'survey','questions','id'));
+            $surveys = Survey::all();
+            $notification = array(
+                'message' => 'Domanda modificata con successo!',
+                'alert-type' => 'success'
+            );
+
+           // return redirect()->action('SurveyController@index')->with($notification);
+            // return redirect()->action(
+            //     [SurveyController::class, 'index'])->with(
+            //         ['id' => $id , 'notification' => $notification ]
+            //     );
+         return view('admin.questions.show', compact('page_title', 'page_description', 'survey','surveys','questions','id','notification'));
 
     }
 

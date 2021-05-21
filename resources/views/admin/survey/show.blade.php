@@ -1,4 +1,4 @@
-@extends('layouts.master')
+{{-- @extends('layouts.master')
 
 @section('content')
 <div class="app-main__outer">
@@ -17,7 +17,84 @@
 
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                            <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
+                                INSERISCI DOMANDA
+                        </div>
+                    </div>
 
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('questions.store') }}">
+
+                            @csrf
+                            <input name="survey_id" id=""  type="hidden" class="form-control" value=" {{$survey->id}}">
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="position-relative form-group"><label for="" class="">Titolo</label>
+                                        <input name="titolo" id="" placeholder="" type="text" class="form-control"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="position-relative form-group"><label for="" class="">Descrizione</label>
+                                        <input name="descrizione" id="" placeholder=" " type="text" class="form-control"></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group">
+                                        <label for="examplePassword"
+                                            class="">Tipo risposta</label>
+                                            <select class="form-control kt-select2 select2" id="kt_select2_1" name="tipo">
+
+                                                <option value="checkbox">risposta multipla</option>
+                                                <option value="radiobutton">risposta singola</option>
+
+
+                                            </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="card-title">Risposte</h5>
+
+
+                            <div class="form-row">
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group">
+                                        <input name="opzione1" id="" placeholder="" type="text" class="form-control"></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group">
+                                        <input name="opzione2" id="" placeholder=" " type="text" class="form-control"></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group">
+                                        <input name="opzione3" id="" placeholder=" " type="text" class="form-control"></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group">
+                                        <input name="opzione4" id="" placeholder=" " type="text" class="form-control"></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group">
+                                        <input name="opzione5" id="" placeholder=" " type="text" class="form-control"></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group">
+                                        <input name="opzione6" id="" placeholder=" " type="text" class="form-control"></div>
+                                </div>
+                            </div>
+
+
+
+                            <button type="submit" class="mt-2 btn btn-primary">Salva</button>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 col-lg-12">
             <div id="accordion" class="accordion-wrapper mb-3">
@@ -105,87 +182,10 @@
             </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 col-lg-12">
-                <div class="mb-3 card">
-                    <div class="card-header-tab card-header-tab-animation card-header">
-                        <div class="card-header-title">
-                            <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
-                                INSERISCI DOMANDA
-                        </div>
-                    </div>
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('questions.store') }}">
-
-                            @csrf
-                            <input name="survey_id" id=""  type="hidden" class="form-control" value=" {{$survey->id}}">
-                            <div class="form-row">
-                                <div class="col-md-4">
-                                    <div class="position-relative form-group"><label for="" class="">Titolo</label>
-                                        <input name="titolo" id="" placeholder="" type="text" class="form-control"></div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group"><label for="" class="">Descrizione</label>
-                                        <input name="descrizione" id="" placeholder=" " type="text" class="form-control"></div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="position-relative form-group">
-                                        <label for="examplePassword"
-                                            class="">Tipo risposta</label>
-                                            <select class="form-control kt-select2 select2" id="kt_select2_1" name="tipo">
-
-                                                <option value="checkbox">risposta multipla</option>
-                                                <option value="radiobutton">risposta singola</option>
-
-
-                                            </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <h5 class="card-title">Risposte</h5>
-
-
-                            <div class="form-row">
-                                <div class="col-md-2">
-                                    <div class="position-relative form-group">
-                                        <input name="opzione1" id="" placeholder="" type="text" class="form-control"></div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="position-relative form-group">
-                                        <input name="opzione2" id="" placeholder=" " type="text" class="form-control"></div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="position-relative form-group">
-                                        <input name="opzione3" id="" placeholder=" " type="text" class="form-control"></div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="position-relative form-group">
-                                        <input name="opzione4" id="" placeholder=" " type="text" class="form-control"></div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="position-relative form-group">
-                                        <input name="opzione5" id="" placeholder=" " type="text" class="form-control"></div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="position-relative form-group">
-                                        <input name="opzione6" id="" placeholder=" " type="text" class="form-control"></div>
-                                </div>
-                            </div>
-
-
-
-                            <button type="submit" class="mt-2 btn btn-primary">Salva</button>
-                        </form>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
        {{-- @include('layouts.footer') --}}
     </div>
 </div>
 
 
-@endsection
+@endsection --}}

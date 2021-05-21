@@ -39,7 +39,18 @@
                 <li class="app-sidebar__heading">Menu</li>
 
                 @role('agente')
-                I am a agent!
+                <li>
+                    <a href="{{ url('/home') }}" class='{{ $page_title === "Dashboard" ? "mm-active" : "" }}'>
+                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{{Route('anagrafica')}}"  class='{{ $page_title === "Anagrafica" ? "mm-active" : "" }}' >
+                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        Anagrafica
+                    </a>
+                </li>
                 @else
                 <li>
                     <a href="{{ url('/home') }}" class='{{ $page_title === "Dashboard" ? "mm-active" : "" }}'>
@@ -53,12 +64,12 @@
                         Survey
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{Route('survey')}}"  class='{{ $page_title === "Domande" ? "mm-active" : "" }}' >
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Modifica domande
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{Route('agenti')}}" class='{{ $page_title === "Agenti" ? "mm-active" : "" }}' >
                         <i class="metismenu-icon pe-7s-rocket"></i>

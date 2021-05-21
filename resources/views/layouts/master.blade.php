@@ -16,6 +16,8 @@
     <meta name="msapplication-tap-highlight" content="no">
 
     <link href="/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 
 <body>
@@ -38,6 +40,30 @@
     </div>
     @include('layouts.script')
     @stack('script')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+        @if(Session::has('message'))
+        <script>
+        var type = "{{ Session::get('alert-type') }}";
+        switch(type){
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+        }
+        </script>
+        @endif
 </body>
 
 </html>

@@ -73,9 +73,9 @@
 
                                     <button type="button" tabindex="0" class="dropdown-item">User
                                         Account</button>
-                                    <button type="button" tabindex="0" class="dropdown-item">Settings</button>
+                                   {{--  <button type="button" tabindex="0" class="dropdown-item">Settings</button>
                                     <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                    <button type="button" tabindex="0" class="dropdown-item">Actions</button>
+                                    <button type="button" tabindex="0" class="dropdown-item">Actions</button> --}}
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();

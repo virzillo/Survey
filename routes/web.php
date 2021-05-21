@@ -37,7 +37,7 @@ Route::group(['middleware' => ['role:super-admin|agente']], function () {
     Route::get('/questions/{id}', [App\Http\Controllers\QuestionsController::class, 'show'])->name('questions.show');
     Route::put('/questions/{id}/update', 'QuestionsController@update')->name('questions.update');
 
-
+    Route::get('/anagrafica',[App\Http\Controllers\HomeController::class, 'anagrafica'])->name('anagrafica');
     // Route::get('/domande', [App\Http\Controllers\SurveyController::class, 'domande'])->name('domande');
 
 

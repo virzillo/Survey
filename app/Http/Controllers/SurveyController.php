@@ -93,8 +93,16 @@ class SurveyController extends Controller
             'alert-type' => 'success'
         );
 
+        $survey = DB::table('surveys')->latest()->first();
 
-        return redirect(action('SurveyController@listadomande'))->with($notification);
+        $page_title = 'creato Domande';
+        $page_description = 'Some description for the page';
+        // $survey = Survey::where('id',$survey->id);
+        dd( $notification);
+        return view('admin.questions.create', compact('page_title', 'page_description', 'survey','notification'));
+        // return redirect(action('SurveyController@listadomande'))->with($notification);
+        //return redirect(action('QuestionsController@create'))->with($notification);
+
 
     }
 
