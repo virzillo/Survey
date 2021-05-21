@@ -11,12 +11,12 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+   // protected $guarded = [];
 
-    // protected $casts = [
-    //     'option_name' => 'array',
-    // ];
-    // protected $fillable = ['title', 'question_type', 'option_name', 'user_id'];
+    protected $casts = [
+        'opzione' => 'array',
+    ];
+     protected $fillable = ['titolo', 'descrizione', 'opzione', 'tipo'];
 
     public function survey() {
       return $this->belongsTo(Survey::class);

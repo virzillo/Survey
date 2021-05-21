@@ -98,8 +98,8 @@ class SurveyController extends Controller
         $page_title = 'creato Domande';
         $page_description = 'Some description for the page';
         // $survey = Survey::where('id',$survey->id);
-        dd( $notification);
-        return view('admin.questions.create', compact('page_title', 'page_description', 'survey','notification'));
+        // dd( $notification);
+        return view('admin.questions.show', compact('page_title', 'page_description', 'survey','notification'))->with($notification);
         // return redirect(action('SurveyController@listadomande'))->with($notification);
         //return redirect(action('QuestionsController@create'))->with($notification);
 
@@ -227,8 +227,18 @@ class SurveyController extends Controller
      * @param  \App\Models\Survey  $survey
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Survey $survey)
+    public function destroy(Survey $survey, $id)
     {
-        //
+
+
+        $survey = Survey::find($id);
+        $survey->delete();
+        $notification = array(
+            'message' => 'Survey eliminato con successo!',
+            'alert-type' => 'success'
+        );
+        $questions=Question::where('survey_id','=',$id);
+        $questions->delete();
+        return back()->with($notification);
     }
 }

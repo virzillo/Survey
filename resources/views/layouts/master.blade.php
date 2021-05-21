@@ -38,8 +38,18 @@
             <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
     </div>
-    @include('layouts.script')
-    @stack('script')
+    {{-- @include('layouts.script') --}}
+    <script type="text/javascript" src="{{url('/')}}/assets/scripts/main.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="{{url('/')}}/assets/scripts/repeater.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+    crossorigin="anonymous">
+</script> --}}
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script>
@@ -64,6 +74,8 @@
         }
         @endif
         </script>
+
+@stack('script')
 </body>
 
 </html>

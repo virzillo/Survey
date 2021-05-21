@@ -1,22 +1,22 @@
 @extends('layouts.master')
 
-@section('content')
+@section('contents')
 <div class="app-main__outer">
     <div class="app-main__inner">
-        <div class="app-page-title">
+        {{-- <div class="app-page-title">
             <div class="page-title-wrapper">
                 <div class="page-title-heading">
                     <div class="page-title-icon">
                         <i class="pe-7s-car icon-gradient bg-mean-fruit">
                         </i>
                     </div>
-                    <div> {{$survey->titolo}}
+                    <div> {{$page_title}} {{$survey->titolo}}
                         <div class="page-title-subheading">{{$survey->descrizione}}</div>
                     </div>
                 </div>
 
             </div>
-        </div>
+        </div> --}}
 
         <div class="row">
             <div class="col-md-12 col-lg-12">
@@ -29,7 +29,7 @@
                     </div>
                     @isset ($questions)
                     @foreach ($questions as $question)
-                    <div class="card-body"><h5 class="card-title">Domanda {{$question->id}}</h5>
+                    <div class="card-body"><h5 class="card-title">sdfsdf sdfDomanda {{$question->id}}</h5>
                         <form method="POST" action="">
 
                             @csrf
@@ -175,7 +175,20 @@
                                 </div>
                             </div>
 
+                            {{-- <div class="position-relative form-group"><label for="exampleAddress" class="">Limite</label>
+                                <input name="address" id="exampleAddress" placeholder="1234 Main St" type="text" class="form-control"></div>
 
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="position-relative form-group"><label for="exampleCity" class="">City</label><input name="city" id="exampleCity" type="text" class="form-control"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="position-relative form-group"><label for="exampleState" class="">State</label><input name="state" id="exampleState" type="text" class="form-control"></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group"><label for="exampleZip" class="">Zip</label><input name="zip" id="exampleZip" type="text" class="form-control"></div>
+                                </div>
+                            </div> --}}
 
                             <button type="submit" class="mt-2 btn btn-primary">Salva</button>
                         </form>

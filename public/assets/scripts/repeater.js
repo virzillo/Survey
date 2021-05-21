@@ -28,7 +28,7 @@ jQuery.fn.extend({
                     $(el).attr("name", group + "[" + key + "]" + "[" + attrName + "]");
                 } else {
                     if (attrName != 'undefined') {
-                        $(el).attr("name", attrName);
+                        $(el).attr("name",  group + "[" + key + "]");
                     }
                 }
                 if (fresh == true) {

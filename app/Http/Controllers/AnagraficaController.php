@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Survey;
+use App\Models\Question;
 use App\Models\Anagrafica;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -119,7 +120,14 @@ class AnagraficaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page_title = 'Avvia Survey';
+        $page_description = 'Some description for the page';
+        $anagrafica = Anagrafica::find($id);
+        $surveys = Survey::all();
+
+        $survey=Survey::find($anagrafica->survey_id);
+        $questions=Question::where('survey_id','=',$anagrafica->survey_id)->get();
+        return view('agent.anagrafica.edit', compact('page_title', 'page_description', 'anagrafica','survey','surveys','questions'));
     }
 
     /**

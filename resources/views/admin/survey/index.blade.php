@@ -148,8 +148,30 @@
                                     <td>{{$survey->titolo}}</td>
                                     <td>{{$survey->descrizione}}</td>
                                     <td>{{$survey->limite}}</td>
-                                    <td><a href="{{route('questions.show', $survey->id )}}" >modifica domande</a></td>
 
+                                    <td class="warning" >
+                                        <form action="{{route('survey.delete', $survey->id)}}" method="POST"
+                                            id="form-delete">
+
+                                            @method('delete')
+                                            @csrf
+
+                                            <a href="{{route('questions.show', $survey->id )}}"
+                                                class="btn btn-icon btn-light btn-hover-primary btn-sm"
+                                                title="modifica domande">modifica domande
+                                                <span class="svg-icon svg-icon-md">
+                                                    <i class="fa fa-cog icon-gradient bg-mean-fruit"> </i>
+                                                </span>
+                                            </a>
+                                            <button type="button"
+                                                class="btn btn-icon btn-light btn-hover-danger btn-sm "
+                                                id="confirm-delete">
+                                                <span class="svg-icon svg-icon-md">
+                                                    <i class="fa fa-archive icon-gradient bg-sunny-morning"> </i>
+                                                </span>
+                                            </button>
+
+                                        </form>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -164,3 +186,25 @@
 
 
 @endsection
+
+@push('script')
+
+<script>
+
+    $("button#confirm-delete").click(function(e) {
+        event.preventDefault();
+        Swal.fire({
+            title: "Sei sicuro?",
+            text: "Stai per eliminare un record!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Si!!"
+        }).then(function(result) {
+            if (result.value) {
+                $("#form-delete").submit();
+            }
+        });
+    });
+
+</script>
+@endpush

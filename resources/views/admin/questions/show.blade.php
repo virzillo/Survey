@@ -10,7 +10,7 @@
                         <i class="pe-7s-car icon-gradient bg-mean-fruit">
                         </i>
                     </div>
-                    <div>{{$survey->titolo}}
+                    <div>show {{$survey->titolo}}
                         <div class="page-title-subheading">{{$survey->descrizione}}</div>
                     </div>
                 </div>
@@ -74,17 +74,17 @@
                             <div class="form-row">
                                 <div class="col-md-4">
                                     <div class="position-relative form-group"><label for="" class="">Titolo</label>
-                                        <input name="titolo" id="" placeholder="" type="text" class="form-control"></div>
+                                        <input name="titolo" id="" placeholder="" type="text" class="form-control" required></div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="position-relative form-group"><label for="" class="">Descrizione</label>
-                                        <input name="descrizione" id="" placeholder=" " type="text" class="form-control"></div>
+                                        <input name="descrizione" id="" placeholder=" " type="text" class="form-control" ></div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <label for="examplePassword"
                                             class="">Tipo risposta</label>
-                                            <select class="form-control kt-select2 select2" id="kt_select2_1" name="tipo">
+                                            <select class="form-control kt-select2 select2" id="kt_select2_1" name="tipo" required>
 
                                                 <option value="checkbox">risposta multipla</option>
                                                 <option value="radiobutton">risposta singola</option>
@@ -94,10 +94,46 @@
                                     </div>
                                 </div>
                             </div>
-                            <h5 class="card-title">Risposte</h5>
 
 
-                            <div class="form-row">
+                            <div id="repeater">
+                                <!-- Repeater Heading -->
+                                <div class="form-row">
+                                    <div class="col-md-10">
+                                        <a class="mt-2 mb-3 btn btn-primary repeater-add-btn" style="color:white;">
+                                            AGGIUNGI RISPOSTA
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <div class="clearfix"></div>
+                                <!-- Repeater Items -->
+
+                                <div class="items" data-index="0" data-group="opzione">
+                                        <!-- Repeater Content -->
+                                    <div class="form-row">
+                                        <div class="col-md-10 col-sm-8 ">
+                                            <div class="position-relative form-group">
+                                                <input name="opzione[]" id="" placeholder="" type="text" class="form-control" required data-skip-name="true" ></div>
+                                        </div>
+
+                                        <!-- Repeater Remove Btn -->
+                                        <div class="col-md-2 col-sm-4 ">
+                                            <div class="pull-right repeater-remove-btn">
+                                                <button class="mb-2 btn btn-danger remove-btn" disabled="disabled" onclick="$(this).parents('.items').remove()">
+                                                    ELIMINA
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="clearfix"></div>
+                                    <div></div>
+                                </div>
+                            </div>
+
+
+                            {{-- <div class="form-row">
                                 <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <input name="opzione1" id="" placeholder="" type="text" class="form-control"></div>
@@ -122,7 +158,7 @@
                                     <div class="position-relative form-group">
                                         <input name="opzione6" id="" placeholder=" " type="text" class="form-control"></div>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
 
@@ -134,11 +170,13 @@
                 </div>
             </div>
         </div>
+        {{-- CONTROLLA SE ESISTONO DOMANDE --}}
+        @if (isset($questions))
         <div class="row">
             <div class="col-md-12 col-lg-12">
             <div id="accordion" class="accordion-wrapper mb-3">
                <?php $i=0; ?>
-                @foreach ($questions as $question)
+                @foreach ($survey->questions as $question)
                 <?php $i++; ?>
                         <div class="card">
                             <div id="heading{{$i}}" class="card-header">
@@ -187,7 +225,61 @@
                                         <h5 class="card-title">Risposte</h5>
 
 
-                                        <div class="form-row">
+
+                                            {{-- <div id="repeater2" >
+                                                <!-- Repeater Heading -->
+                                                <div class="form-row">
+                                                    <div class="col-md-10">
+                                                        <a class="mt-2 mb-3 btn btn-primary repeater-add-btn" style="color:white;">
+                                                            AGGIUNGI RISPOSTAsss
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                                <!-- Repeater Items -->
+                                                @foreach ($question->opzione as $key=>$item)
+                                                <div class="items" data-index="{{$key}}" data-group="opzione">
+                                                        <!-- Repeater Content -->
+                                                    <div class="form-row">
+                                                        <div class="col-md-10 col-sm-8 ">
+                                                            <div class="position-relative form-group">
+                                                                <input name="opzione[{{$key}}]" id="opzione[{{$key}}]" placeholder="" type="text" class="form-control" value="{{$item}}" data-skip-name="true">
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <!-- Repeater Remove Btn -->
+                                                        <div class="col-md-2 col-sm-4 ">
+                                                            <div class="pull-right repeater-remove-btn">
+                                                                <button class="mb-2 btn btn-danger remove-btn"  onclick="$(this).parents('.items').remove()">
+                                                                    ELIMINA
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                        <div class="clearfix"></div>
+                                                    <div></div>
+                                                </div>
+                                                @endforeach
+
+                                            </div> --}}
+
+                                            <div class="form-row">
+                                            @foreach ($question->opzione as $key=>$item)
+                                            <div class="col-md-2">
+                                                <div class="position-relative form-group">
+                                                    <input name="opzione[{{$key}}]" id="opzione[{{$key}}]" placeholder="" type="text" class="form-control" value="{{$item}}"></div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+
+
+
+                                        {{-- <div class="form-row">
                                             <div class="col-md-2">
                                                 <div class="position-relative form-group">
                                                     <input name="opzione1" id="" placeholder="" type="text" class="form-control" value="{{$question->opzione1}}"></div>
@@ -212,10 +304,13 @@
                                                 <div class="position-relative form-group">
                                                     <input name="opzione6" id="" placeholder=" " type="text" class="form-control"  value="{{$question->opzione6}}" ></div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <button type="submit" class="mt-2 btn btn-primary">Salva</button>
                                     </form>
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -223,6 +318,8 @@
             </div>
             </div>
         </div>
+        @endif
+
 
        {{-- @include('layouts.footer') --}}
     </div>
@@ -230,3 +327,15 @@
 
 
 @endsection
+
+@push('script')
+<script>
+    /* Create Repeater */
+    $("#repeater").createRepeater({
+          showFirstItemToDefault: true,
+      });
+      $("#repeater2").createRepeater({
+          showFirstItemToDefault: true,
+      });
+</script>
+@endpush

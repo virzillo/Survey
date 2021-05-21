@@ -209,6 +209,13 @@
                                                             <i class="fa fa-cog icon-gradient bg-mean-fruit"> </i>
                                                         </span>
                                                     </a>
+                                                    <a href="{{route('anagrafica.edit', $anagrafica->id )}}"
+                                                        class="btn btn-icon btn-light btn-hover-primary btn-sm"
+                                                        title="Avvia">
+                                                        <span class="svg-icon svg-icon-md">
+                                                            <i class="fa fa-file-archive icon-gradient bg-happy-itmeo"> </i>
+                                                        </span>
+                                                    </a>
                                                     <button type="button"
                                                         class="btn btn-icon btn-light btn-hover-danger btn-sm "
                                                         id="confirm-delete">
@@ -243,11 +250,7 @@
 
 
 @push('script')
-<script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
 
     $("button#confirm-delete").click(function(e) {

@@ -124,9 +124,8 @@
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->getRoleNames()->first()}}</td>
                                         <td class="warning" >
-                                            <form action="{{route('agente.delete', $user->id)}}" method="POST"
+                                            <form action="{{route('agente.destroy', $user->id)}}" method="POST"
                                                 id="form-delete">
-
                                                 @method('delete')
                                                 @csrf
                                                 <a href="{{route('agente.edit',$user->id )}}"
@@ -165,3 +164,24 @@
 @endsection
 
 
+@push('script')
+
+<script>
+
+    $("button#confirm-delete").click(function(e) {
+        event.preventDefault();
+        Swal.fire({
+            title: "Sei sicuro?",
+            text: "Stai per eliminare un record!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Si!!"
+        }).then(function(result) {
+            if (result.value) {
+                $("#form-delete").submit();
+            }
+        });
+    });
+
+</script>
+@endpush

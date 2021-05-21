@@ -219,6 +219,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        dd($id);
         User::find($id)->delete();
 
 

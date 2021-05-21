@@ -3,20 +3,20 @@
 @section('content')
 <div class="app-main__outer">
     <div class="app-main__inner">
-        {{-- <div class="app-page-title">
+        <div class="app-page-title">
             <div class="page-title-wrapper">
                 <div class="page-title-heading">
                     <div class="page-title-icon">
                         <i class="pe-7s-car icon-gradient bg-mean-fruit">
                         </i>
                     </div>
-                    <div> {{$page_title}} {{$survey->titolo}}
+                    <div>q r {{$survey->titolo}}
                         <div class="page-title-subheading">{{$survey->descrizione}}</div>
                     </div>
                 </div>
 
             </div>
-        </div> --}}
+        </div>
 
         <div class="row">
             <div class="col-md-12 col-lg-12">
@@ -69,6 +69,8 @@
                             <h5 class="card-title">Risposte</h5>
 
 
+
+
                             <div class="form-row">
                                 <div class="col-md-2">
                                     <div class="position-relative form-group">
@@ -96,20 +98,6 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="position-relative form-group"><label for="exampleAddress" class="">Limite</label>
-                                <input name="address" id="exampleAddress" placeholder="1234 Main St" type="text" class="form-control"></div>
-
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group"><label for="exampleCity" class="">City</label><input name="city" id="exampleCity" type="text" class="form-control"></div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="position-relative form-group"><label for="exampleState" class="">State</label><input name="state" id="exampleState" type="text" class="form-control"></div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="position-relative form-group"><label for="exampleZip" class="">Zip</label><input name="zip" id="exampleZip" type="text" class="form-control"></div>
-                                </div>
-                            </div> --}}
 
                             <button type="submit" class="mt-2 btn btn-primary">Salva</button>
                         </form>
@@ -121,7 +109,7 @@
                         <form method="POST" action="{{ route('questions.store') }}">
 
                             @csrf
-                            <input name="survey_id" id=""  type="hidden" class="form-control" value=" {{$survey->id}}">
+                            <input name="survey_id" id="survey_id"  type="hidden" class="form-control" value=" {{$survey->id}}">
                             <div class="form-row">
                                 <div class="col-md-4">
                                     <div class="position-relative form-group"><label for="" class="">Titolo</label>
@@ -145,10 +133,49 @@
                                     </div>
                                 </div>
                             </div>
-                            <h5 class="card-title">Risposte</h5>
+
+                            <div id="repeater">
+                                <!-- Repeater Heading -->
+                                <div class="form-row">
+                                    <div class="col-md-10">
+                                        <a class="mt-2 mb-3 btn btn-primary repeater-add-btn" style="color:white;">
+                                            AGGIUNGI RISPOSTA
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <div class="clearfix"></div>
+                                <!-- Repeater Items -->
+
+                                <div class="items" data-index="0" data-group="opzione">
+                                        <!-- Repeater Content -->
+                                    <div class="form-row">
+                                        <div class="col-md-10 col-sm-8 ">
+                                            <div class="position-relative form-group">
+                                                <label for="inputEmail" class="col-lg-2 control-label">Name</label>
+
+                                                <input name="opzione[]" id="" placeholder="" type="text" class="form-control" required data-skip-name="true" ></div>
+                                        </div>
+
+                                        <!-- Repeater Remove Btn -->
+                                        <div class="col-md-2 col-sm-4 ">
+                                            <div class="pull-right repeater-remove-btn">
+                                                <button class="mb-2 btn btn-danger remove-btn" disabled="disabled" onclick="$(this).parents('.items').remove()">
+                                                    ELIMINA
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="clearfix"></div>
+                                    <div></div>
+                                </div>
+                            </div>
 
 
-                            <div class="form-row">
+
+
+                            {{-- <div class="form-row">
                                 <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <input name="opzione1" id="" placeholder="" type="text" class="form-control"></div>
@@ -173,22 +200,9 @@
                                     <div class="position-relative form-group">
                                         <input name="opzione6" id="" placeholder=" " type="text" class="form-control"></div>
                                 </div>
-                            </div>
-
-                            {{-- <div class="position-relative form-group"><label for="exampleAddress" class="">Limite</label>
-                                <input name="address" id="exampleAddress" placeholder="1234 Main St" type="text" class="form-control"></div>
-
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group"><label for="exampleCity" class="">City</label><input name="city" id="exampleCity" type="text" class="form-control"></div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="position-relative form-group"><label for="exampleState" class="">State</label><input name="state" id="exampleState" type="text" class="form-control"></div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="position-relative form-group"><label for="exampleZip" class="">Zip</label><input name="zip" id="exampleZip" type="text" class="form-control"></div>
-                                </div>
                             </div> --}}
+
+
 
                             <button type="submit" class="mt-2 btn btn-primary">Salva</button>
                         </form>
@@ -204,3 +218,12 @@
 
 
 @endsection
+
+@push('script')
+<script>
+      /* Create Repeater */
+      $("#repeater").createRepeater({
+            showFirstItemToDefault: true,
+        });
+</script>
+@endpush

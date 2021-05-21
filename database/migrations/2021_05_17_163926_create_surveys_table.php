@@ -22,6 +22,8 @@ class CreateSurveysTable extends Migration
             // $table->integer('user_id')->unsigned()->index();
             $table->softDeletes();
             $table->timestamps();
+
+
         });
     }
 

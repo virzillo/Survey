@@ -27,10 +27,11 @@ Route::group(['middleware' => ['role:super-admin|agente']], function () {
     Route::get('/survey', [App\Http\Controllers\SurveyController::class, 'index'])->name('survey');
     Route::get('/survey/create', [App\Http\Controllers\SurveyController::class, 'create'])->name('survey.create');
     Route::post('/survey', [App\Http\Controllers\SurveyController::class, 'store'])->name('survey.store');
+    Route::delete('/survey/{id}', [App\Http\Controllers\SurveyController::class, 'destroy'])->name('survey.delete');
 
 
-    Route::get('/survey/domande', [App\Http\Controllers\SurveyController::class, 'listadomande'])->name('survey.listadomande');
-    Route::get('/survey/{id}', [App\Http\Controllers\SurveyController::class, 'modificadomande'])->name('survey.modificadomande');
+    // Route::get('/survey/domande', [App\Http\Controllers\SurveyController::class, 'listadomande'])->name('survey.listadomande');
+    // Route::get('/survey/{id}', [App\Http\Controllers\SurveyController::class, 'modificadomande'])->name('survey.modificadomande');
 
     Route::get('/questions/create', [App\Http\Controllers\QuestionsController::class, 'create'])->name('questions.create');
     Route::post('/questions', [App\Http\Controllers\QuestionsController::class, 'store'])->name('questions.store');
@@ -54,7 +55,7 @@ Route::group(['middleware' => ['role:super-admin|agente']], function () {
     Route::post('/agenti', [App\Http\Controllers\UsersController::class, 'register'])->name('agente.store');
     Route::get('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'edit'])->name('agente.edit');
     Route::put('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'update'])->name('agente.update');
-    Route::delete('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'destroy'])->name('agente.delete');
+    Route::delete('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'destroy'])->name('agente.destroy');
 
 
 });
