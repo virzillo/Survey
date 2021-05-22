@@ -114,14 +114,14 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($users as $user)
-                                    <?php $num=$user->id; ?>
+
                                     <tr>
                                         <td scope="row">{{$user->id}}</td>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->getRoleNames()->first()}}</td>
                                         <td class="warning" >
-                                            <form action="{{route('agente.destroy', $num)}}" method="POST" id="form-delete" >
+                                            <form action="{{route('agente.delete',$user->id)}}" method="POST" id="form-delete" >
                                                 @method('delete')
                                                 @csrf
                                                 <a href="{{route('agente.edit',$user->id )}}"

@@ -95,15 +95,15 @@
                         <div class="form-row">
                             <div class="col-md-4">
                                 <div class="position-relative form-group"><label for="" class="">Titolo</label>
-                                    <input name="titolo" id="titolo" placeholder="inserisci titolo survey" type="text" class="form-control" required></div>
+                                    <input name="titolo" id="titolo" placeholder="inserisci titolo survey" type="text" class="form-control  @error('titolo') is-invalid @enderror" value="{{ old('titolo') }}" required></div>
                             </div>
                             <div class="col-md-6">
                                 <div class="position-relative form-group"><label for="" class="">Descrizione</label>
-                                    <input name="descrizione" id="descrizione" placeholder=" " type="text" class="form-control" required></div>
+                                    <input name="descrizione" id="descrizione" placeholder=" " type="text" class="form-control  @error('descrizione') is-invalid @enderror" value="{{ old('descrizione') }}" required></div>
                             </div>
                             <div class="col-md-2">
                             <div class="position-relative form-group"><label for="" class="">Limite</label>
-                                <input name="limite" id="limite" placeholder="numero max" type="number" class="form-control" required></div>
+                                <input name="limite" id="limite" placeholder="numero max" type="number" class="form-control @error('limite') is-invalid @enderror" value="{{ old('limite') }}" required></div>
                             </div>
                         </div>
                         {{-- <div class="position-relative form-group"><label for="exampleAddress" class="">Limite</label>
@@ -145,13 +145,10 @@
                                     <td>{{$survey->descrizione}}</td>
                                     <td>{{$survey->limite}}</td>
 
-                                    <td class="warning" >
-                                        <form action="{{route('survey.delete', $survey->id)}}" method="POST"
-                                            id="form-delete">
-
+                                    <td >
+                                        <form action="{{route('survey.delete', $survey->id)}}" method="POST" id="form-delete">
                                             @method('delete')
                                             @csrf
-
                                             <a href="{{route('questions.show', $survey->id )}}"
                                                 class="btn btn-icon btn-light btn-hover-primary btn-sm"
                                                 title="modifica domande">modifica domande
@@ -159,7 +156,7 @@
                                                     <i class="fa fa-cog icon-gradient bg-mean-fruit"> </i>
                                                 </span>
                                             </a>
-                                            <button type="button"
+                                            <button type="submit"
                                                 class="btn btn-icon btn-light btn-hover-danger btn-sm "
                                                 id="confirm-delete" onclick="ConfirmDelete()">
                                                 <span class="svg-icon svg-icon-md">
@@ -184,5 +181,24 @@
 @endsection
 
 @push('script')
+{{-- <script>
 
+
+    $("button#confirm-delete").click(function(e) {
+        event.preventDefault();
+        Swal.fire({
+            title: "Sei sicuro?",
+            text: "Stai per eliminare un record!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Si!!"
+        }).then(function(result) {
+            if (result.value) {
+                // confirm(result.value);
+                $("#form-delete").submit();
+            }
+        });
+    });
+
+</script> --}}
 @endpush

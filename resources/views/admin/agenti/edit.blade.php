@@ -62,7 +62,7 @@
                                         <label for="examplePassword" class="">Password</label>
                                         <input id="password" type="password"
                                             class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="new-password">
+                                             autocomplete="new-password">
 
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -75,7 +75,7 @@
                                     <div class="position-relative form-group">
                                         <label for="examplePassword" class="">Conferma Password</label>
                                         <input id="password-confirm" type="password" class="form-control"
-                                            name="password_confirmation" required autocomplete="new-password">
+                                            name="password_confirmation"  autocomplete="new-password">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -124,7 +124,7 @@
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->getRoleNames()->first()}}</td>
                                         <td class="warning" >
-                                            <form action="{{route('agente.destroy', $user->id)}}" method="POST"
+                                            <form action="{{route('agente.delete', $user->id)}}" method="POST"
                                                 id="form-delete">
                                                 @method('delete')
                                                 @csrf
@@ -135,7 +135,7 @@
                                                         <i class="fa fa-cog icon-gradient bg-mean-fruit"> </i>
                                                     </span>
                                                 </a>
-                                                <button type="button"
+                                                <button type="submit"
                                                     class="btn btn-icon btn-light btn-hover-danger btn-sm "
                                                     id="confirm-delete" onclick="ConfirmDelete()">
                                                     <span class="svg-icon svg-icon-md">

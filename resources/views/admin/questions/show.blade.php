@@ -10,7 +10,7 @@
                         <i class="pe-7s-car icon-gradient bg-mean-fruit">
                         </i>
                     </div>
-                    <div>show {{$survey->titolo}}
+                    <div>INSERISCI ALTRE DOMANDE O MODIFICA ESISTENTI - Titolo Survey: {{$survey->titolo}}
                         <div class="page-title-subheading">{{$survey->descrizione}}</div>
                     </div>
                 </div>
@@ -23,17 +23,16 @@
                     <div class="card-header-tab card-header-tab-animation card-header">
                         <div class="card-header-title">
                             <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
-                               SURVEY {{$survey->titolo}}
+                               MODIFICA INTESTAZIONE SURVEY: {{$survey->titolo}}
                         </div>
                     </div>
 
                     <div class="card-body">
                          {{-- MODIFICA INTESTAZIONE SURVEY --}}
-                        {{-- <form method="POST" action="{{ route('survey.edit') }}"> --}}
-                            <form method="POST" action="">
-
+                        <form method="POST" action="{{ route('survey.update',$survey->id) }}">
+                            @method('PUT')
                             @csrf
-                            {{-- <input name="survey_id" id=""  type="hidden" class="form-control" value=" {{$survey->id}}"> --}}
+
                             <div class="form-row">
                                 <div class="col-md-4">
                                     <div class="position-relative form-group"><label for="" class="">Titolo</label>

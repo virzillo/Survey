@@ -218,7 +218,42 @@ class SurveyController extends Controller
      */
     public function update(Request $request, Survey $survey)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'titolo' => 'required|min:2|string',
+            'descrizione' => 'string|min:2',
+            'limite' => 'min:1',
+        ]);
+
+        if ($validator->fails()) {
+
+            $notification = array(
+                'message' => $validator->errors(),
+                'alert-type' => 'error'
+            );
+
+            return back()
+                        ->with($notification)
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $survey->update($request->all());
+
+        dd($request);
+        $survey = Survey::find($survey->id);
+        $survey->titolo = $request->get('titolo');
+        $survey->descrizione = $request->get('descrizione');
+        $survey->limite = $request->get('limite');
+
+
+        // $survey->pubblicato = $request->get('pubblicato');
+
+        $survey->save();
+
+        $notification = array(
+            'message' => 'Slider modificato con successo!',
+            'alert-type' => 'success'
+        );
     }
 
     /**
@@ -227,17 +262,17 @@ class SurveyController extends Controller
      * @param  \App\Models\Survey  $survey
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Survey $survey, $id)
+    public function destroy(Survey $survey)
     {
 
+        // dd($survey);
 
-        $survey = Survey::find($id);
         $survey->delete();
         $notification = array(
             'message' => 'Survey eliminato con successo!',
             'alert-type' => 'success'
         );
-        $questions=Question::where('survey_id','=',$id);
+        $questions=Question::where('survey_id','=',$survey->id);
         $questions->delete();
         return back()->with($notification);
     }
