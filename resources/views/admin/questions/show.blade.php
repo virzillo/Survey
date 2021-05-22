@@ -34,11 +34,11 @@
                             @csrf
 
                             <div class="form-row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="position-relative form-group"><label for="" class="">Titolo</label>
                                         <input name="titolo" id="" placeholder="" type="text" class="form-control" value=" {{$survey->titolo}}"></div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <div class="position-relative form-group"><label for="" class="">Descrizione</label>
                                         <input name="descrizione" id="" placeholder=" " type="text" class="form-control" value=" {{$survey->descrizione}}"></div>
                                 </div>
@@ -46,6 +46,21 @@
                                     <div class="position-relative form-group">
                                         <div class="position-relative form-group"><label for="" class="">Limite</label>
                                             <input name="limite" id="" placeholder=" " type="text" class="form-control" value=" {{$survey->limite}}"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group">
+                                        <label for="examplePassword"
+                                            class="">Pubblicato</label>
+                                            <select class="form-control kt-select2 select2" id="pubblicato" name="pubblicato" required>
+                                                @if ($survey->pubblicato=='off')
+                                                <option value="off">no</option>
+                                                <option value="on">si</option>
+                                                @else
+                                                <option value="on">si</option>
+                                                <option value="off">no</option>
+                                                @endif
+                                            </select>
                                     </div>
                                 </div>
                             </div>
@@ -84,11 +99,8 @@
                                         <label for="examplePassword"
                                             class="">Tipo risposta</label>
                                             <select class="form-control kt-select2 select2" id="kt_select2_1" name="tipo" required>
-
-                                                <option value="checkbox">risposta multipla</option>
                                                 <option value="radiobutton">risposta singola</option>
-
-
+                                                <option value="checkbox">risposta multipla</option>
                                             </select>
                                     </div>
                                 </div>

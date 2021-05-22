@@ -134,6 +134,7 @@
                                 <th>Nome</th>
                                 <th>Descrizione</th>
                                 <th>Limite</th>
+                                <th>Pubblicato</th>
                                 <th>Azioni</th>
                             </tr>
                             </thead>
@@ -144,7 +145,7 @@
                                     <td>{{$survey->titolo}}</td>
                                     <td>{{$survey->descrizione}}</td>
                                     <td>{{$survey->limite}}</td>
-
+                                    <td>{{$survey->pubblicato}}</td>
                                     <td >
                                         <form action="{{route('survey.delete', $survey->id)}}" method="POST" id="form-delete">
                                             @method('delete')

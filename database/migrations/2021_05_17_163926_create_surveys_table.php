@@ -19,6 +19,7 @@ class CreateSurveysTable extends Migration
             $table->string('descrizione')->nullable();
             $table->string('gruppo')->nullable();
             $table->integer('limite');
+            $table->enum('pubblicato', ['off', 'on'])->default('off');
             // $table->integer('user_id')->unsigned()->index();
             $table->softDeletes();
             $table->timestamps();
