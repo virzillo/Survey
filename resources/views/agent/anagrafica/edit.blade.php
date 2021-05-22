@@ -253,22 +253,5 @@
 
 @push('script')
 
-<script>
 
-    $("button#confirm-delete").click(function(e) {
-        event.preventDefault();
-        Swal.fire({
-            title: "Sei sicuro?",
-            text: "Stai per eliminare un record!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Si!!"
-        }).then(function(result) {
-            if (result.value) {
-                $("#form-delete").submit();
-            }
-        });
-    });
-
-</script>
 @endpush

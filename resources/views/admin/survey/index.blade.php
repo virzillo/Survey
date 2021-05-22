@@ -84,11 +84,7 @@
                 </div>
             </div>
         </div> --}}
-        @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="main-card mb-3 card">
@@ -99,15 +95,15 @@
                         <div class="form-row">
                             <div class="col-md-4">
                                 <div class="position-relative form-group"><label for="" class="">Titolo</label>
-                                    <input name="titolo" id="" placeholder="inserisci titolo survey" type="text" class="form-control" required></div>
+                                    <input name="titolo" id="titolo" placeholder="inserisci titolo survey" type="text" class="form-control" required></div>
                             </div>
                             <div class="col-md-6">
                                 <div class="position-relative form-group"><label for="" class="">Descrizione</label>
-                                    <input name="descrizione" id="" placeholder=" " type="text" class="form-control" required></div>
+                                    <input name="descrizione" id="descrizione" placeholder=" " type="text" class="form-control" required></div>
                             </div>
                             <div class="col-md-2">
                             <div class="position-relative form-group"><label for="" class="">Limite</label>
-                                <input name="limite" id="" placeholder="numero max" type="number" class="form-control" required></div>
+                                <input name="limite" id="limite" placeholder="numero max" type="number" class="form-control" required></div>
                             </div>
                         </div>
                         {{-- <div class="position-relative form-group"><label for="exampleAddress" class="">Limite</label>
@@ -165,7 +161,7 @@
                                             </a>
                                             <button type="button"
                                                 class="btn btn-icon btn-light btn-hover-danger btn-sm "
-                                                id="confirm-delete">
+                                                id="confirm-delete" onclick="ConfirmDelete()">
                                                 <span class="svg-icon svg-icon-md">
                                                     <i class="fa fa-archive icon-gradient bg-sunny-morning"> </i>
                                                 </span>
@@ -189,22 +185,4 @@
 
 @push('script')
 
-<script>
-
-    $("button#confirm-delete").click(function(e) {
-        event.preventDefault();
-        Swal.fire({
-            title: "Sei sicuro?",
-            text: "Stai per eliminare un record!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Si!!"
-        }).then(function(result) {
-            if (result.value) {
-                $("#form-delete").submit();
-            }
-        });
-    });
-
-</script>
 @endpush

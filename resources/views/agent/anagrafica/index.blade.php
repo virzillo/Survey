@@ -218,7 +218,7 @@
                                                     </a>
                                                     <button type="button"
                                                         class="btn btn-icon btn-light btn-hover-danger btn-sm "
-                                                        id="confirm-delete">
+                                                        id="confirm-delete" onclick="ConfirmDelete()">
                                                         <span class="svg-icon svg-icon-md">
                                                             <i class="fa fa-archive icon-gradient bg-sunny-morning"> </i>
                                                         </span>
@@ -251,22 +251,5 @@
 
 @push('script')
 
-<script>
 
-    $("button#confirm-delete").click(function(e) {
-        event.preventDefault();
-        Swal.fire({
-            title: "Sei sicuro?",
-            text: "Stai per eliminare un record!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Si!!"
-        }).then(function(result) {
-            if (result.value) {
-                $("#form-delete").submit();
-            }
-        });
-    });
-
-</script>
 @endpush

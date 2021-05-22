@@ -55,7 +55,7 @@ Route::group(['middleware' => ['role:super-admin|agente']], function () {
     Route::post('/agenti', [App\Http\Controllers\UsersController::class, 'register'])->name('agente.store');
     Route::get('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'edit'])->name('agente.edit');
     Route::put('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'update'])->name('agente.update');
-    Route::delete('/agenti/{id}', [App\Http\Controllers\UsersController::class, 'destroy'])->name('agente.destroy');
+    Route::delete('/agenti/{id}/delete', [App\Http\Controllers\UsersController::class, 'destroy'])->name('agente.destroy');
 
 
 });
