@@ -39,6 +39,10 @@ Route::group(['middleware' => ['role:super-admin|agente']], function () {
     Route::get('/questions/{id}', [App\Http\Controllers\QuestionsController::class, 'show'])->name('questions.show');
     Route::put('/questions/{id}/update', 'QuestionsController@update')->name('questions.update');
 
+    Route::get('/anagrafiche',[App\Http\Controllers\HomeController::class, 'anagrafiche'])->name('anagrafiche');
+    Route::get('/anagrafiche/{id}',[App\Http\Controllers\HomeController::class, 'risposte'])->name('risposte.show');
+
+
     Route::get('/anagrafica',[App\Http\Controllers\AnagraficaController::class, 'index'])->name('anagrafica');
     Route::post('/anagrafica', [App\Http\Controllers\AnagraficaController::class, 'store'])->name('anagrafica.store');
 
@@ -48,6 +52,7 @@ Route::group(['middleware' => ['role:super-admin|agente']], function () {
     // Route::get('/domande', [App\Http\Controllers\SurveyController::class, 'domande'])->name('domande');
 
     Route::post('/answer', [App\Http\Controllers\AnswerController::class, 'store'])->name('answer.store');
+    Route::get('/answer/{answers}', [App\Http\Controllers\AnswerController::class, 'risposte'])->name('answer.risposte');
 
     // Route::post('/survey/inseriscidomande', [App\Http\Controllers\SurveyController::class, 'inseriscidomande'])->name('survey.inseriscidomande');
     // Route::get('/agenti', [App\Http\Controllers\AgentController::class, 'index'])->name('agenti');

@@ -21,12 +21,12 @@ class CreateQuestionsTable extends Migration
             $table->string('descrizione')->nullable();
             $table->string('tipo');
             $table->string('opzione')->nullable();
-            $table->string('opzione1')->nullable();
-            $table->string('opzione2')->nullable();
-            $table->string('opzione3')->nullable();
-            $table->string('opzione4')->nullable();
-            $table->string('opzione5')->nullable();
-            $table->string('opzione6')->nullable();
+            // $table->string('opzione1')->nullable();
+            // $table->string('opzione2')->nullable();
+            // $table->string('opzione3')->nullable();
+            // $table->string('opzione4')->nullable();
+            // $table->string('opzione5')->nullable();
+            // $table->string('opzione6')->nullable();
             $table->timestamps();
 
 

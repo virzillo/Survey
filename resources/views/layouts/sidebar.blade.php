@@ -59,12 +59,12 @@
                         Survey
                     </a>
                 </li>
-                {{-- <li>
-                    <a href="{{Route('survey')}}"  class='{{ $page_title === "Domande" ? "mm-active" : "" }}' >
+                <li>
+                    <a href="{{Route('anagrafiche')}}"  class='{{ $page_title === "Anagrafiche" ? "mm-active" : "" }}' >
                         <i class="metismenu-icon pe-7s-rocket"></i>
-                        Modifica domande
+                        Anagrafiche
                     </a>
-                </li> --}}
+                </li>
                 {{-- <li>
                     <a href="{{Route('agenti')}}" class='{{ $page_title === "Agenti" ? "mm-active" : "" }}' >
                         <i class="metismenu-icon pe-7s-rocket"></i>

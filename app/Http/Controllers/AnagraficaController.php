@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Survey;
 use App\Models\Question;
 use App\Models\Anagrafica;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AnagraficaController extends Controller
@@ -25,9 +27,11 @@ class AnagraficaController extends Controller
     {
         $page_title = 'Anagrafica';
         $page_description = 'Some description for the page';
-        $anagrafiche = Anagrafica::all();
+        $anagrafiche = Anagrafica::where('user_id', Auth::user()->id)->get();
+        $totale=Anagrafica::where('user_id', Auth::user()->id)->where('avanzamento','concluso')->get()->count();
         $surveys=Survey::all();
-        return view('agent.anagrafica.index', compact('page_title', 'page_description', 'anagrafiche','surveys'));
+
+        return view('agent.anagrafica.index', compact('page_title', 'page_description', 'anagrafiche','surveys','totale'));
     }
 
     /**
@@ -125,10 +129,10 @@ class AnagraficaController extends Controller
         $page_description = 'Some description for the page';
         $anagrafica = Anagrafica::find($id);
         $surveys = Survey::all();
-
+        $answers=Answer::where('survey_id',$anagrafica->survey_id)->get();
         $survey=Survey::find($anagrafica->survey_id);
         $questions=Question::where('survey_id','=',$anagrafica->survey_id)->get();
-        return view('agent.anagrafica.edit', compact('page_title', 'page_description', 'anagrafica','survey','surveys','questions'));
+        return view('agent.anagrafica.edit', compact('page_title', 'page_description', 'anagrafica','survey','surveys','questions','answers'));
     }
 
     /**

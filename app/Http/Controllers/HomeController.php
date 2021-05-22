@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Survey;
+use App\Models\Question;
+use App\Models\Anagrafica;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -38,5 +41,17 @@ class HomeController extends Controller
         return view('agent.anagrafica.index', compact('page_title', 'page_description'));
 
     }
+
+    public function anagrafiche()
+    {
+        $page_title = 'Anagrafiche';
+        $page_description = 'Some description for the page';
+        $anagrafiche = Anagrafica::all();
+        $surveys=Survey::all();
+        return view('admin.anagrafiche.index', compact('page_title', 'page_description', 'anagrafiche','surveys'));
+
+    }
+
+
 
 }

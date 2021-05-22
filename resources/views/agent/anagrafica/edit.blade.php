@@ -146,132 +146,164 @@
                                <?php
                                 $i=0;
                                 $n=0;
+                                $b=0;
                                 ?>
-
-                                @foreach ($questions as $question)
+                            @foreach ($questions as $question)
                                 <?php
                                 $i++;
                                 $n++;
                                 ?>
-                                        <div class="card">
-                                            <div id="heading{{$i}}" class="card-header">
-                                                <button type="button" data-toggle="collapse" data-target="#collapse{{$i}}1" aria-expanded="false" aria-controls="collapse{{$i}}" class="text-left m-0 p-0 btn btn-link btn-block collapsed">
-                                                    <h5 class="m-0 p-0">Domanda {{$i}}</h5>
-                                                </button>
-                                            </div>
-                                            <div data-parent="#accordion" id="collapse{{$i}}1" aria-labelledby="heading{{$i}}" class="collapse" style="">
-                                                <div class="card-body">
-                                                    <form method="POST" action="{{ route('answer.store') }}" >
-                                                        @csrf
-                                                        <input name="survey_id" id=""  type="hidden" class="form-control" value=" {{$survey->id}}">
-                                                        <input name="id" id=""  type="hidden" class="form-control" value=" {{$question->id}}">
 
-                                                        <div class="form-row">
-                                                            <div class="col-md-12">
-                                                                <div class="position-relative form-group"><label for="" class="">Titolo: {{$question->titolo}}</label>
-                                                                    <input name="titolo" id="" placeholder=""  type="hidden" class="form-control" value="{{$question->titolo}}" readonly></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
+                                <div class="card">
+                                    <div id="heading{{$i}}" class="card-header">
+                                        <button type="button" data-toggle="collapse" data-target="#collapse{{$i}}1" aria-expanded="false" aria-controls="collapse{{$i}}" class="text-left m-0 p-0 btn btn-link btn-block collapsed">
+                                            <h5 class="m-0 p-0">Domanda {{$i}}</h5>
+                                        </button>
+                                    </div>
+                                    <div data-parent="#accordion" id="collapse{{$i}}1" aria-labelledby="heading{{$i}}" class="collapse" style="">
+                                        <div class="card-body">
+                                            <form method="POST" action="{{ route('answer.store') }}" >
+                                                @csrf
+                                                <input name="survey_id" id="survey_id"  type="hidden" class="form-control" value=" {{$survey->id}}">
+                                                <input name="question_id" id="question_id"  type="hidden" class="form-control" value=" {{$question->id}}">
 
-                                                            <div class="col-md-12">
-                                                                <div class="position-relative form-group"><label for="" class="">Suggerimento: {{$question->descrizione}}</label>
-                                                                    <input name="descrizione" id="" placeholder=" "  type="hidden"  class="form-control" value="{{$question->descrizione}}" readonly></div>
-                                                            </div>
+                                                <div class="form-row">
+                                                    <div class="col-md-12">
+                                                        <div class="position-relative form-group"><label for="" class="">Titolo: {{$question->titolo}}</label>
+                                                            <input name="titolo" id="" placeholder=""  type="hidden" class="form-control" value="{{$question->titolo}}" readonly></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
 
-                                                        </div>
-                                                        <h5 class="card-title">Risposte</h5>
+                                                    <div class="col-md-12">
+                                                        <div class="position-relative form-group"><label for="" class="">Suggerimento: {{$question->descrizione}}</label>
+                                                            <input name="descrizione" id="" placeholder=" "  type="hidden"  class="form-control" value="{{$question->descrizione}}" readonly></div>
+                                                    </div>
+
+                                                </div>
+                                                <h5 class="card-title">Risposte</h5>
 
 
-                                                        <div class="form-row">
-                                                            @if ($question->tipo=='radiobutton')
-                                                            <div class="position-relative form-group">
-                                                                <div>
-                                                                    @foreach ($question->opzione as $key=>$item)
-
-                                                                    <div class="custom-radio custom-control custom-control-inline">
-                                                                    <input type="radio" id="risposta{{$n}}" name="risposta" class="custom-control-input" value="{{$item}}">
-                                                                    <label class="custom-control-label" for="risposta{{$n}}">{{$item}}</label><br>
-                                                                    </div>
-                                                                    <?php $n++; ?>
-                                                                    @endforeach
-
-                                                                </div>
-                                                            </div>
-                                                            {{-- <fieldset class="position-relative form-group">
-                                                                <div class="position-relative form-check">
-                                                                    <label class="form-check-label">
-                                                                        <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione1}}</label>
-                                                                </div>
-                                                                <div class="position-relative form-check">
-                                                                    <label class="form-check-label">
-                                                                        <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione2}}</label>
-                                                                </div>
-                                                                <div class="position-relative form-check">
-                                                                    <label class="form-check-label">
-                                                                        <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione3}}</label>
-                                                                </div>
-                                                                <div class="position-relative form-check">
-                                                                    <label class="form-check-label">
-                                                                        <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione4}}</label>
-                                                                </div>
-                                                                <div class="position-relative form-check">
-                                                                    <label class="form-check-label">
-                                                                        <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione5}}</label>
-                                                                </div>
-                                                                <div class="position-relative form-check">
-                                                                    <label class="form-check-label">
-                                                                        <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione6}}</label>
-                                                                </div>
-                                                            </fieldset> --}}
-                                                            @else
-                                                            <div class="position-relative form-group">
-                                                                <div>
-                                                                @foreach ($question->opzione as $key=>$item)
-
-                                                                <div class="custom-checkbox custom-control custom-control-inline">
-                                                                    <input type="checkbox" id="risposta{{$n}}" name="risposta[]" class="custom-control-input" value="{{$item}}">
-                                                                    <label class="custom-control-label" for="risposta{{$n}}" >{{$item}}</label>
+                                                <div class="form-row">
+                                                    @if ($question->tipo=='radiobutton')
+                                                    <div class="position-relative form-group">
+                                                        <div>
+                                                            @foreach ($question->opzione as $key=>$item)
+                                                            @if(isset($question->answer->risposte))
+                                                            <div class="custom-radio custom-control custom-control-inline">
+                                                                <input type="radio" id="risposte{{$n}}" name="risposte"
+                                                                class="custom-control-input" {{ $question->answer->risposte === $item ? "checked" : "" }}
+                                                                value="{{$item}}">
+                                                                <label class="custom-control-label" for="risposte{{$n}}">{{$item}}</label><br>
                                                                 </div>
                                                                 <?php $n++; ?>
-                                                                @endforeach
+                                                            @else
+                                                            <div class="custom-radio custom-control custom-control-inline">
+                                                                <input type="radio" id="risposte{{$n}}" name="risposte"
+                                                                class="custom-control-input"
+                                                                value="{{$item}}">
+                                                                <label class="custom-control-label" for="risposte{{$n}}">{{$item}}</label><br>
                                                                 </div>
-                                                            </div>
+                                                                <?php $n++; ?>
                                                             @endif
 
+                                                            @endforeach
 
-                                                            {{-- <div class="col-md-2">
-                                                                <div class="position-relative form-group">
-                                                                    <input name="opzione1" id="" placeholder="" type="text" class="form-control" value="{{$question->opzione1}}"></div>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <div class="position-relative form-group">
-                                                                    <input name="opzione2" id="" placeholder=" " type="text" class="form-control"  value="{{$question->opzione2}} "></div>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <div class="position-relative form-group">
-                                                                    <input name="opzione3" id="" placeholder=" " type="text" class="form-control"  value="{{$question->opzione3}} "></div>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <div class="position-relative form-group">
-                                                                    <input name="opzione4" id="" placeholder=" " type="text" class="form-control"  value="{{$question->opzione4}}" ></div>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <div class="position-relative form-group">
-                                                                    <input name="opzione5" id="" placeholder=" " type="text" class="form-control"  value="{{$question->opzione5}}" ></div>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <div class="position-relative form-group">
-                                                                    <input name="opzione6" id="" placeholder=" " type="text" class="form-control"  value="{{$question->opzione6}}" ></div>
-                                                            </div> --}}
                                                         </div>
+                                                    </div>
+                                                    {{-- <fieldset class="position-relative form-group">
+                                                        <div class="position-relative form-check">
+                                                            <label class="form-check-label">
+                                                                <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione1}}</label>
+                                                        </div>
+                                                        <div class="position-relative form-check">
+                                                            <label class="form-check-label">
+                                                                <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione2}}</label>
+                                                        </div>
+                                                        <div class="position-relative form-check">
+                                                            <label class="form-check-label">
+                                                                <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione3}}</label>
+                                                        </div>
+                                                        <div class="position-relative form-check">
+                                                            <label class="form-check-label">
+                                                                <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione4}}</label>
+                                                        </div>
+                                                        <div class="position-relative form-check">
+                                                            <label class="form-check-label">
+                                                                <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione5}}</label>
+                                                        </div>
+                                                        <div class="position-relative form-check">
+                                                            <label class="form-check-label">
+                                                                <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione6}}</label>
+                                                        </div>
+                                                    </fieldset> --}}
+                                                    @else
+                                                    <div class="position-relative form-group">
+                                                        <div>
+                                                        @foreach ($question->opzione as $key=>$item)
+                                                        @if(isset($question->answer->risposte[$key]))
+                                                            <div class="custom-checkbox custom-control custom-control-inline">
+                                                                <input type="checkbox" id="risposte{{$n}}" name="risposte[]"
+                                                                 class="custom-control-input"  {{ $question->answer->risposte[$key] === $item ? "checked" : "" }}
+                                                                 value="{{$item}}">
+                                                                <label class="custom-control-label" for="risposte{{$n}}" >{{$item}}</label>
+                                                            </div>
+                                                            <?php $n++; ?>
+                                                            @else
+                                                            <div class="custom-checkbox custom-control custom-control-inline">
+                                                                <input type="checkbox" id="risposte{{$n}}" name="risposte[]"
+                                                                 class="custom-control-input"
+                                                                 value="{{$item}}">
+                                                                <label class="custom-control-label" for="risposte{{$n}}" >{{$item}}</label>
+                                                            </div>
+                                                            <?php $n++; ?>
+                                                        @endif
 
-                                                        <button type="submit" class="mt-2 btn btn-primary">Salva</button>
-                                                    </form>
+                                                        @endforeach
+                                                        </div>
+                                                    </div>
+                                                    @endif
+
+
+                                                    {{-- <div class="col-md-2">
+                                                        <div class="position-relative form-group">
+                                                            <input name="opzione1" id="" placeholder="" type="text" class="form-control" value="{{$question->opzione1}}"></div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="position-relative form-group">
+                                                            <input name="opzione2" id="" placeholder=" " type="text" class="form-control"  value="{{$question->opzione2}} "></div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="position-relative form-group">
+                                                            <input name="opzione3" id="" placeholder=" " type="text" class="form-control"  value="{{$question->opzione3}} "></div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="position-relative form-group">
+                                                            <input name="opzione4" id="" placeholder=" " type="text" class="form-control"  value="{{$question->opzione4}}" ></div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="position-relative form-group">
+                                                            <input name="opzione5" id="" placeholder=" " type="text" class="form-control"  value="{{$question->opzione5}}" ></div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="position-relative form-group">
+                                                            <input name="opzione6" id="" placeholder=" " type="text" class="form-control"  value="{{$question->opzione6}}" ></div>
+                                                    </div> --}}
                                                 </div>
-                                            </div>
+                                                @if(isset($question->answer))
+                                                <button type="submit" class="mt-2 btn btn-primary" disabled>Salva</button>
+
+                                                @else
+                                                <button type="submit" class="mt-2 btn btn-primary">Salva</button>
+
+                                                @endif
+                                            </form>
                                         </div>
-                                        @endforeach
+                                    </div>
+                                </div>
+
+
+                            @endforeach
 
 
                             </div>
@@ -295,6 +327,7 @@
                             <div class="position-relative form-group">
                                 <label for="exampleSelect" class="">Avanzamento</label>
                                 <select name="avanzamento" id="avanzamento" class="form-control" required>
+
                                     <option value="in corso">In corso</option>
                                     <option value="concluso">Concluso</option>
                                 </select>

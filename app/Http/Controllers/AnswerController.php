@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Answer;
 use App\Models\Survey;
 use App\Models\Question;
-use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AnswerController extends Controller
 {
@@ -37,7 +39,52 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-       dd($request);
+
+
+
+       $validator = Validator::make($request->all(), [
+        'survey_id' => 'required|min:1|string',
+        'question_id' => 'required|string|min:1',
+        'titolo' => 'required|string|min:1',
+        'descrizione' => 'nullable',
+
+    ]);
+
+    if ($validator->fails()) {
+
+        $notification = array(
+            'message' => $validator->errors(),
+            'alert-type' => 'error'
+        );
+
+        return back()
+                    ->with($notification)
+                    ->withErrors($validator)
+                    ->withInput();
+    }
+
+    $answer= new Answer;
+    $answer->titolo=$request->get('titolo');
+    $answer->descrizione=$request->get('descrizione');
+    $answer->risposte=$request->get('risposte');
+    $answer->tipo=$request->get('tipo');
+
+    $answer->question_id=$request->get('question_id');
+    $answer->survey_id=$request->get('survey_id');
+
+
+    $answer->save();
+
+    $answers=Answer::where('survey_id',$request->get('survey_id'))->get();
+    $notification = array(
+        'message' => 'Risposta inserita con successo!',
+        'alert-type' => 'success'
+    );
+
+
+
+    return back()->with($notification,$answers);
+
     }
 
     /**
@@ -84,4 +131,18 @@ class AnswerController extends Controller
     {
         //
     }
+
+
+    public function risposte($id , Answer $answer)
+    {
+
+        // dd($answer);
+        $page_title = 'Visualizza Risposte Survey';
+        $page_description = 'Some description for the page';
+        $questions=Question::where('user_id',$id)->get();
+        $surveys=Survey::all();
+        return view('admin.anagrafiche.show', compact('page_title', 'page_description', 'questions','surveys'));
+
+    }
+
 }

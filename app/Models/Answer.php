@@ -12,7 +12,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Answer extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $casts = [
+        'risposte' => 'array',
+    ];
+    // protected $table = 'answer';
+     protected $fillable = ['titolo', 'descrizione', 'survey_id', 'question_id'];
 
     public function survey() {
         return $this->belongsTo(Survey::class);
@@ -21,7 +25,7 @@ class Answer extends Model
       public function question() {
         return $this->belongsTo(Question::class);
       }
-      public function user() {
-        return $this->belongsTo(User::class);
-      }
+    //   public function user() {
+    //     return $this->belongsTo(User::class);
+    //   }
 }

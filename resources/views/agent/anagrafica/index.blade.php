@@ -31,6 +31,7 @@
             </div>
         </div>
         <div class="row">
+            @foreach ($surveys as $survey)
             <div class="col-md-6 col-xl-4">
                 <div class="card mb-3 widget-content bg-midnight-bloom">
                     <div class="widget-content-wrapper text-white">
@@ -39,11 +40,13 @@
                             <div class="widget-subheading">Da completare</div>
                         </div>
                         <div class="widget-content-right">
-                            <div class="widget-numbers text-white"><span>50</span></div>
+                            <div class="widget-numbers text-white"><span>{{($survey->limite)-$totale}}</span></div>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
+
             {{-- <div class="col-md-6 col-xl-4">
                 <div class="card mb-3 widget-content bg-arielle-smile">
                     <div class="widget-content-wrapper text-white">
@@ -181,7 +184,7 @@
                                         <th>Nome struttura</th>
                                         <th>Interlocutore</th>
                                         <th>Stato</th>
-                                        <th>Tipo</th>
+                                        <th>Avanzamento</th>
 
                                         <th>Azioni</th>
                                     </tr>
@@ -194,7 +197,7 @@
                                             <td>{{$anagrafica->interlocutore}}</td>
 
                                             <td>{{$anagrafica->stato}}</td>
-                                            <td>{{$anagrafica->tipo}}</td>
+                                            <td>{{$anagrafica->avanzamento}}</td>
 
                                             <td class="warning" >
                                                 <form action="{{route('anagrafica.destroy', $anagrafica->id)}}" method="POST"
