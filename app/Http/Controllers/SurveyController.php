@@ -240,6 +240,13 @@ class SurveyController extends Controller
         $survey->update($request->all());
 
         dd($request);
+        $notification = array(
+            'message' => 'Slider modificato con successo!',
+            'alert-type' => 'success'
+        );
+        return back()->with($notification);
+
+
         $survey = Survey::find($survey->id);
         $survey->titolo = $request->get('titolo');
         $survey->descrizione = $request->get('descrizione');
@@ -254,6 +261,7 @@ class SurveyController extends Controller
             'message' => 'Slider modificato con successo!',
             'alert-type' => 'success'
         );
+        return back()->with($notification);
     }
 
     /**

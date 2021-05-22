@@ -17,6 +17,7 @@ class CreateAnswersTable extends Migration
             $table->id();
             $table->integer('survey_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
+            $table->integer('question_id')->unsigned()->index();
             $table->string('titolo');
             $table->string('descrizione')->nullable();;
             $table->string('tipo');

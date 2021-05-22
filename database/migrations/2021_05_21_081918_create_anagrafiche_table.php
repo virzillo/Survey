@@ -17,14 +17,17 @@ class CreateAnagraficheTable extends Migration
             $table->id();
             $table->integer('survey_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
+
             $table->string('nominativo_struttura');
+            $table->string('potenziale_struttura');
+
             $table->string('percentuale_cessione');
             $table->string('interlocutore');
             $table->string('specializzazione');
             $table->string('profilo');
             $table->string('mezzi_diagnostici');
-            $table->string('stato');
-            $table->enum('tipo', ['off', 'on'])->default('off');
+            $table->enum('avanzamento', ['in corso', 'concluso','off'])->default('off');
+            $table->enum('stato', ['off', 'on'])->default('off');
 
             $table->text('note')->nullable();
 

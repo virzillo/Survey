@@ -30,7 +30,7 @@ Route::group(['middleware' => ['role:super-admin|agente']], function () {
     Route::put('/survey/{survey}', 'SurveyController@update')->name('survey.update');
     Route::delete('/survey/{survey}', [App\Http\Controllers\SurveyController::class, 'destroy'])->name('survey.delete');
 
-    //Route::resource('survey', SurveyController::class);
+    //Route::resource('anagrafica', AnagraficaController::class);
     // Route::get('/survey/domande', [App\Http\Controllers\SurveyController::class, 'listadomande'])->name('survey.listadomande');
     // Route::get('/survey/{id}', [App\Http\Controllers\SurveyController::class, 'modificadomande'])->name('survey.modificadomande');
 
@@ -42,11 +42,12 @@ Route::group(['middleware' => ['role:super-admin|agente']], function () {
     Route::get('/anagrafica',[App\Http\Controllers\AnagraficaController::class, 'index'])->name('anagrafica');
     Route::post('/anagrafica', [App\Http\Controllers\AnagraficaController::class, 'store'])->name('anagrafica.store');
 
-    Route::get('/anagrafica/{id}', [App\Http\Controllers\AnagraficaController::class, 'edit'])->name('anagrafica.edit');
-    Route::put('/anagrafica/{id}', [App\Http\Controllers\AnagraficaController::class, 'update'])->name('anagrafica.update');
-    Route::delete('/anagrafica/{id}', [App\Http\Controllers\AnagraficaController::class, 'destroy'])->name('anagrafica.delete');
+    Route::delete('/anagrafica/{id}', [App\Http\Controllers\AnagraficaController::class, 'destroy'])->name('anagrafica.destroy');
+    Route::put('/anagrafica/{anagrafica}', [App\Http\Controllers\AnagraficaController::class, 'update'])->name('anagrafica.update');
+    Route::get('/anagrafica/{id}/edit', [App\Http\Controllers\AnagraficaController::class, 'edit'])->name('anagrafica.edit');
     // Route::get('/domande', [App\Http\Controllers\SurveyController::class, 'domande'])->name('domande');
 
+    Route::post('/answer', [App\Http\Controllers\AnswerController::class, 'store'])->name('answer.store');
 
     // Route::post('/survey/inseriscidomande', [App\Http\Controllers\SurveyController::class, 'inseriscidomande'])->name('survey.inseriscidomande');
     // Route::get('/agenti', [App\Http\Controllers\AgentController::class, 'index'])->name('agenti');

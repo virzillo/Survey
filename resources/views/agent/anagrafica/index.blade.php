@@ -197,7 +197,7 @@
                                             <td>{{$anagrafica->tipo}}</td>
 
                                             <td class="warning" >
-                                                <form action="{{route('anagrafica.delete', $anagrafica->id)}}" method="POST"
+                                                <form action="{{route('anagrafica.destroy', $anagrafica->id)}}" method="POST"
                                                     id="form-delete">
 
                                                     @method('delete')

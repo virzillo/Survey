@@ -39,107 +39,120 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="main-card mb-3 card">
-                <div class="card-body"><h5 class="card-title">Anagrafica</h5>
-                    <form method="POST" action="{{ route('anagrafica.store') }}">
-                        @csrf
-                        <input name="user_id" id="user_id"  type="hidden" class="form-control" value=" {{Auth::user()->id}}">
+                    <div class="card-body"><h5 class="card-title">Anagrafica</h5>
+                        <form method="POST" action="{{ route('anagrafica.update', $anagrafica->id) }}">
+                            @method('PUT')
+                            @csrf
+                            <input name="user_id" id="user_id"  type="hidden" class="form-control" value=" {{Auth::user()->id}}">
 
-                        <div class="form-row">
-                            <div class="col-md-4">
-                                <div class="position-relative form-group"><label for="" class="">Nominativo struttura</label>
-                                    <input name="nominativo_struttura" id="nominativo_struttura" placeholder="" type="text" class="form-control" value="{{$anagrafica->nominativo_struttura}}" required></div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="position-relative form-group"><label for="" class="">Interlocutore</label>
-                                    <input name="interlocutore" id="interlocutore" placeholder="inserisci nome e cognome" type="text" class="form-control" value="{{$anagrafica->interlocutore}}" required>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="position-relative form-group"><label for="" class="">Nominativo struttura</label>
+                                        <input name="nominativo_struttura" id="nominativo_struttura" placeholder="" type="text" class="form-control" value="{{$anagrafica->nominativo_struttura}}" required></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="position-relative form-group"><label for="" class="">Interlocutore</label>
+                                        <input name="interlocutore" id="interlocutore" placeholder="inserisci nome e cognome" type="text" class="form-control" value="{{$anagrafica->interlocutore}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group"><label for="" class="">Percentuale Cessione</label>
+                                        <select name="percentuale_cessione" id="percentuale_cessione" class="form-control" required>
+                                            <option value="{{$anagrafica->percentuale_cessione}}">{{$anagrafica->percentuale_cessione}}</option>
+
+                                            <option value="1-5%">1-5%</option>
+                                            <option value="6-10%">6-10%</option>
+                                            <option value="11-20%">11-20%</option>
+                                            <option value=">20%">>20%</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Potenziale struttura</label>
+                                        <select name="potenziale_struttura" id="otenziale_struttura" class="form-control" required>
+                                            <option value="{{$anagrafica->potenziale_struttura}}">{{$anagrafica->potenziale_struttura}}</option>
+
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <div class="position-relative form-group"><label for="" class="">Percentuale Cessione</label>
-                                    <select name="percentuale_cessione" id="percentuale_cessione" class="form-control" required>
-                                        <option value="{{$anagrafica->percentuale_cessione}}">{{$anagrafica->percentuale_cessione}}</option>
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Specializzazione</label>
+                                        <select name="specializzazione" id="specializzazione" class="form-control" required>
+                                            <option value="{{$anagrafica->specializzazione}}">{{$anagrafica->specializzazione}}</option>
 
-                                        <option value="1-5%">1-5%</option>
-                                        <option value="6-10%">6-10%</option>
-                                        <option value="11-20%">11-20%</option>
-                                        <option value=">20%">>20%</option>
-                                    </select>
+                                            <option value="ANESTESIA">ANESTESIA</option>
+                                            <option value="CHIRURGIA">CHIRURGIA</option>
+                                            <option value="ORTOPEDIA">ORTOPEDIA</option>
+                                            <option value="FISIOTERAPIA">FISIOTERAPIA</option>
+                                            <option value="MEDICINA">MEDICINA</option>
+                                            <option value="INTERNA">INTERNA</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Profilo interlocutore</label>
+                                        <select name="profilo" id="profilo" class="form-control" required>
+                                            <option value="{{$anagrafica->profilo}}">{{$anagrafica->profilo}}</option>
+
+                                            <option value="BUSINESS">BUSINESS</option>
+                                            <option value="CLIENTE">CLIENTE</option>
+                                            <option value="SCIENZA">SCIENZA</option>
+                                            <option value="PAZIENTE">PAZIENTE</option>
+                                            <option value="IMMAGINE">IMMAGINE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Mezzi diagnostici a disp.</label>
+                                        <select name="mezzi_diagnostici" id="mezzi_diagnostici" class="form-control" required>
+                                            <option value="{{$anagrafica->mezzi_diagnostici}}">{{$anagrafica->mezzi_diagnostici}}</option>
+
+                                            <option value="RX">RX</option>
+                                            <option value="TAC">TAC</option>
+                                            <option value="RM">RM</option>
+                                            <option value="ARTROSCOPIA">ARTROSCOPIA</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Assegna survey disp.</label>
+                                        <select name="survey_id" id="survey_id" class="form-control" required>
+                                            <option value="{{$anagrafica->survey_id}}">{{$anagrafica->survey->titolo}}</option>
+                                            @foreach ($surveys as $survey)
+                                            <option value="{{$survey->id}}">{{$survey->titolo}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <div class="position-relative form-group"><label for="exampleSelect" class="">Potenziale struttura</label>
-                                    <select name="potenziale_struttura" id="otenziale_struttura" class="form-control" required>
-                                        <option value="{{$anagrafica->potenziale_struttura}}">{{$anagrafica->potenziale_struttura}}</option>
 
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-3">
-                                <div class="position-relative form-group"><label for="exampleSelect" class="">Specializzazione</label>
-                                    <select name="specializzazione" id="specializzazione" class="form-control" required>
-                                        <option value="{{$anagrafica->specializzazione}}">{{$anagrafica->specializzazione}}</option>
-
-                                        <option value="ANESTESIA">ANESTESIA</option>
-                                        <option value="CHIRURGIA">CHIRURGIA</option>
-                                        <option value="ORTOPEDIA">ORTOPEDIA</option>
-                                        <option value="FISIOTERAPIA">FISIOTERAPIA</option>
-                                        <option value="MEDICINA">MEDICINA</option>
-                                        <option value="INTERNA">INTERNA</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="position-relative form-group"><label for="exampleSelect" class="">Profilo interlocutore</label>
-                                    <select name="profilo" id="profilo" class="form-control" required>
-                                        <option value="{{$anagrafica->profilo}}">{{$anagrafica->profilo}}</option>
-
-                                        <option value="BUSINESS">BUSINESS</option>
-                                        <option value="CLIENTE">CLIENTE</option>
-                                        <option value="SCIENZA">SCIENZA</option>
-                                        <option value="PAZIENTE">PAZIENTE</option>
-                                        <option value="IMMAGINE">IMMAGINE</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="position-relative form-group"><label for="exampleSelect" class="">Mezzi diagnostici a disp.</label>
-                                    <select name="mezzi_diagnostici" id="mezzi_diagnostici" class="form-control" required>
-                                        <option value="{{$anagrafica->mezzi_diagnostici}}">{{$anagrafica->mezzi_diagnostici}}</option>
-
-                                        <option value="RX">RX</option>
-                                        <option value="TAC">TAC</option>
-                                        <option value="RM">RM</option>
-                                        <option value="ARTROSCOPIA">ARTROSCOPIA</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="position-relative form-group"><label for="exampleSelect" class="">Assegna survey disp.</label>
-                                    <select name="survey_id" id="survey_id" class="form-control" required>
-                                        <option value="{{$anagrafica->survey_id}}">{{$anagrafica->survey->titolo}}</option>
-                                        @foreach ($surveys as $survey)
-                                        <option value="{{$survey->id}}">{{$survey->titolo}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="mt-2 btn btn-primary">Modifica</button>
-                    </form>
+                            <button type="submit" class="mt-2 btn btn-primary">Modifica</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-                <div class="main-card mb-3 card">
-                    <div class="card-body"><h5 class="card-title">Survey</h5>
-                        <div class="col-md-12 col-lg-12">
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="main-card mb-3 card ">
+                    <div class="card-body">
+                        <h5 class="card-title">Survey</h5>
+                        {{-- <div class="col-md-12 col-lg-12"> --}}
                             <div id="accordion" class="accordion-wrapper mb-3">
-                               <?php $i=0; ?>
+                               <?php
+                                $i=0;
+                                $n=0;
+                                ?>
+
                                 @foreach ($questions as $question)
-                                <?php $i++; ?>
+                                <?php
+                                $i++;
+                                $n++;
+                                ?>
                                         <div class="card">
                                             <div id="heading{{$i}}" class="card-header">
                                                 <button type="button" data-toggle="collapse" data-target="#collapse{{$i}}1" aria-expanded="false" aria-controls="collapse{{$i}}" class="text-left m-0 p-0 btn btn-link btn-block collapsed">
@@ -148,8 +161,7 @@
                                             </div>
                                             <div data-parent="#accordion" id="collapse{{$i}}1" aria-labelledby="heading{{$i}}" class="collapse" style="">
                                                 <div class="card-body">
-                                                    <form method="POST" action="{{ route('questions.update',$question->id) }}" >
-                                                        @method('PUT')
+                                                    <form method="POST" action="{{ route('answer.store') }}" >
                                                         @csrf
                                                         <input name="survey_id" id=""  type="hidden" class="form-control" value=" {{$survey->id}}">
                                                         <input name="id" id=""  type="hidden" class="form-control" value=" {{$question->id}}">
@@ -173,7 +185,20 @@
 
                                                         <div class="form-row">
                                                             @if ($question->tipo=='radiobutton')
-                                                            <fieldset class="position-relative form-group">
+                                                            <div class="position-relative form-group">
+                                                                <div>
+                                                                    @foreach ($question->opzione as $key=>$item)
+
+                                                                    <div class="custom-radio custom-control custom-control-inline">
+                                                                    <input type="radio" id="risposta{{$n}}" name="risposta" class="custom-control-input" value="{{$item}}">
+                                                                    <label class="custom-control-label" for="risposta{{$n}}">{{$item}}</label><br>
+                                                                    </div>
+                                                                    <?php $n++; ?>
+                                                                    @endforeach
+
+                                                                </div>
+                                                            </div>
+                                                            {{-- <fieldset class="position-relative form-group">
                                                                 <div class="position-relative form-check">
                                                                     <label class="form-check-label">
                                                                         <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione1}}</label>
@@ -198,9 +223,20 @@
                                                                     <label class="form-check-label">
                                                                         <input name="radio1" type="radio" class="form-check-input" value="{{$question->opzione1}}">{{$question->opzione6}}</label>
                                                                 </div>
-                                                            </fieldset>
+                                                            </fieldset> --}}
                                                             @else
-                                                            <div class="position-relative form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input"> Check me out</label></div>
+                                                            <div class="position-relative form-group">
+                                                                <div>
+                                                                @foreach ($question->opzione as $key=>$item)
+
+                                                                <div class="custom-checkbox custom-control custom-control-inline">
+                                                                    <input type="checkbox" id="risposta{{$n}}" name="risposta[]" class="custom-control-input" value="{{$item}}">
+                                                                    <label class="custom-control-label" for="risposta{{$n}}" >{{$item}}</label>
+                                                                </div>
+                                                                <?php $n++; ?>
+                                                                @endforeach
+                                                                </div>
+                                                            </div>
                                                             @endif
 
 
@@ -236,8 +272,35 @@
                                             </div>
                                         </div>
                                         @endforeach
+
+
                             </div>
+                        {{-- </div> --}}
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="main-card mb-3 card">
+                    <div class="card-body"><h5 class="card-title">Note</h5>
+                        <form method="POST" action="{{ route('anagrafica.update', $anagrafica->id) }}">
+                            @method('PUT')
+                            @csrf
+                            <input name="user_id" id="user_id"  type="hidden" class="form-control" value=" {{Auth::user()->id}}">
+
+                                <div class="position-relative form-group">
+                                    <textarea name="note" id="note" class="form-control">{{ $anagrafica->note}}</textarea>
+                                </div>
+
+                            <div class="position-relative form-group">
+                                <label for="exampleSelect" class="">Avanzamento</label>
+                                <select name="avanzamento" id="avanzamento" class="form-control" required>
+                                    <option value="in corso">In corso</option>
+                                    <option value="concluso">Concluso</option>
+                                </select>
                             </div>
+                            <button type="submit" class="mt-2 btn btn-primary">Salva</button>
+                        </form>
 
                     </div>
                 </div>

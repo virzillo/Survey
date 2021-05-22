@@ -60,5 +60,13 @@ class RolesAndPermissionSeeder extends Seeder
            ]);
 
            $user->assignRole('super-admin');
+
+           $user=User::create([
+            'name' => 'Mario Rossi',
+            'email' => 'mario@rossi.it',
+            'password' => Hash::make('aqswdefr'),
+            ]);
+
+            $user->assignRole('agente');
     }
 }

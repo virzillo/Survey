@@ -50,6 +50,7 @@ class AnagraficaController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nominativo_struttura' => 'required|min:2|string',
+            'potenziale_struttura' => 'required|min:1|string',
             'percentuale_cessione' => 'required|string|min:1',
             'interlocutore' => 'required|string|min:1',
             'specializzazione' => 'required|string|min:1',
@@ -72,12 +73,12 @@ class AnagraficaController extends Controller
 
         $anagrafica= new Anagrafica;
         $anagrafica->nominativo_struttura=$request['nominativo_struttura'];
+        $anagrafica->potenziale_struttura=$request['potenziale_struttura'];
         $anagrafica->percentuale_cessione=$request['percentuale_cessione'];
         $anagrafica->interlocutore=$request['interlocutore'];
         $anagrafica->specializzazione=$request['specializzazione'];
         $anagrafica->profilo=$request['profilo'];
         $anagrafica->mezzi_diagnostici=$request['mezzi_diagnostici'];
-        $anagrafica->stato='Non avviato';
         $anagrafica->note=$request['note'];
 
         $anagrafica->user_id=$request['user_id'];
@@ -137,9 +138,39 @@ class AnagraficaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Anagrafica $anagrafica)
     {
-        //
+        // $validator = Validator::make($request->all(), [
+        //     'nominativo_struttura' => 'required|min:2|string',
+        //     'potenziale_struttura' => 'required|min:1|string',
+        //     'percentuale_cessione' => 'required|string|min:1',
+        //     'interlocutore' => 'required|string|min:1',
+        //     'specializzazione' => 'required|string|min:1',
+        //     'profilo' => 'required|string|min:1',
+        //     'mezzi_diagnostici' => 'required|string|min:1',
+        // ]);
+
+        // if ($validator->fails()) {
+
+        //     $notification = array(
+        //         'message' => $validator->errors(),
+        //         'alert-type' => 'error'
+        //     );
+
+        //     return back()
+        //                 ->with($notification)
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
+
+        $anagrafica->update($request->all());
+
+        $notification = array(
+            'message' => 'Salvataggio riuscito!',
+            'alert-type' => 'success'
+        );
+        return back()->with($notification);
+
     }
 
     /**
