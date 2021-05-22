@@ -166,6 +166,7 @@
                                                 @csrf
                                                 <input name="survey_id" id="survey_id"  type="hidden" class="form-control" value=" {{$survey->id}}">
                                                 <input name="question_id" id="question_id"  type="hidden" class="form-control" value=" {{$question->id}}">
+                                                <input name="anagrafica_id" id="anagrafica_id"  type="hidden" class="form-control" value=" {{$anagrafica->id}}">
 
                                                 <div class="form-row">
                                                     <div class="col-md-12">
@@ -188,11 +189,15 @@
                                                     @if ($question->tipo=='radiobutton')
                                                     <div class="position-relative form-group">
                                                         <div>
+                                                            @isset($question->answers[($anagrafica->id)-1])
+                                                            <?php $rispx=$question->answers[($anagrafica->id)-1] ; ?>
+                                                            @endisset
+
                                                             @foreach ($question->opzione as $key=>$item)
-                                                            @if(isset($question->answer->risposte))
+                                                            @if(isset($rispx->risposte))
                                                             <div class="custom-radio custom-control custom-control-inline">
                                                                 <input type="radio" id="risposte{{$n}}" name="risposte"
-                                                                class="custom-control-input" {{ $question->answer->risposte === $item ? "checked" : "" }}
+                                                                class="custom-control-input" {{ $rispx->risposte === $item ? "checked" : "" }}
                                                                 value="{{$item}}">
                                                                 <label class="custom-control-label" for="risposte{{$n}}">{{$item}}</label><br>
                                                                 </div>
@@ -240,11 +245,16 @@
                                                     @else
                                                     <div class="position-relative form-group">
                                                         <div>
+                                                            @isset($question->answers[($anagrafica->id)-1])
+                                                            <?php $rispx=$question->answers[($anagrafica->id)-1] ; ?>
+                                                            {{ $rispx=$question->answers[($anagrafica->id)-1] }}
+
+                                                            @endisset
                                                         @foreach ($question->opzione as $key=>$item)
-                                                        @if(isset($question->answer->risposte[$key]))
+                                                        @if(isset($rispx->risposte[$key]))
                                                             <div class="custom-checkbox custom-control custom-control-inline">
                                                                 <input type="checkbox" id="risposte{{$n}}" name="risposte[]"
-                                                                 class="custom-control-input"  {{ $question->answer->risposte[$key] === $item ? "checked" : "" }}
+                                                                 class="custom-control-input"  {{ $rispx->risposte[$key] === $item ? "checked" : "" }}
                                                                  value="{{$item}}">
                                                                 <label class="custom-control-label" for="risposte{{$n}}" >{{$item}}</label>
                                                             </div>
@@ -290,7 +300,7 @@
                                                             <input name="opzione6" id="" placeholder=" " type="text" class="form-control"  value="{{$question->opzione6}}" ></div>
                                                     </div> --}}
                                                 </div>
-                                                @if(isset($question->answer))
+                                                @if(isset($question->answers[($anagrafica->id)-1]))
                                                 <button type="submit" class="mt-2 btn btn-primary" disabled>Salva</button>
 
                                                 @else

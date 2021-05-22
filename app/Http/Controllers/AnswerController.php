@@ -7,6 +7,7 @@ use App\Models\Answer;
 use App\Models\Survey;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AnswerController extends Controller
@@ -40,7 +41,7 @@ class AnswerController extends Controller
     public function store(Request $request)
     {
 
-
+        dd($request);
 
        $validator = Validator::make($request->all(), [
         'survey_id' => 'required|min:1|string',
@@ -63,6 +64,7 @@ class AnswerController extends Controller
                     ->withInput();
     }
 
+
     $answer= new Answer;
     $answer->titolo=$request->get('titolo');
     $answer->descrizione=$request->get('descrizione');
@@ -71,6 +73,8 @@ class AnswerController extends Controller
 
     $answer->question_id=$request->get('question_id');
     $answer->survey_id=$request->get('survey_id');
+    $answer->user_id=Auth::user()->id;
+    $answer->anagrafica_id=$request->get('anagrafica_id');
 
 
     $answer->save();
@@ -133,15 +137,15 @@ class AnswerController extends Controller
     }
 
 
-    public function risposte($id , Answer $answer)
+    public function risposte( Answer $answer)
     {
 
-        // dd($answer);
+        dd($answer->id);
         $page_title = 'Visualizza Risposte Survey';
         $page_description = 'Some description for the page';
-        $questions=Question::where('user_id',$id)->get();
+        $answers=Answer::where('survey_id',$answer->survey_id)->where('user_id',$answer->user_id)->get();
         $surveys=Survey::all();
-        return view('admin.anagrafiche.show', compact('page_title', 'page_description', 'questions','surveys'));
+        return view('admin.anagrafiche.show', compact('page_title', 'page_description', 'answers','surveys'));
 
     }
 

@@ -16,7 +16,7 @@ class Answer extends Model
         'risposte' => 'array',
     ];
     // protected $table = 'answer';
-     protected $fillable = ['titolo', 'descrizione', 'survey_id', 'question_id'];
+     protected $fillable = ['titolo', 'descrizione', 'survey_id', 'user_id', 'question_id'];
 
     public function survey() {
         return $this->belongsTo(Survey::class);
@@ -24,6 +24,9 @@ class Answer extends Model
 
       public function question() {
         return $this->belongsTo(Question::class);
+      }
+      public function anagrafica() {
+        return $this->belongsTo(Anagrafica::class);
       }
     //   public function user() {
     //     return $this->belongsTo(User::class);

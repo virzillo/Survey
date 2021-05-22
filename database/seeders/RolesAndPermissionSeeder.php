@@ -68,5 +68,14 @@ class RolesAndPermissionSeeder extends Seeder
             ]);
 
             $user->assignRole('agente');
+
+            $user=User::create([
+                'name' => 'Nicola Bianchi',
+                'email' => 'nicola@bianchi.it',
+                'password' => Hash::make('aqswdefr'),
+                ]);
+
+                $user->assignRole('agente');
+
     }
 }

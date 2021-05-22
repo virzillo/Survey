@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Form;
 use App\Models\Answer;
 use App\Models\Survey;
 use App\Models\Question;
@@ -30,7 +31,9 @@ class AnagraficaController extends Controller
         $anagrafiche = Anagrafica::where('user_id', Auth::user()->id)->get();
         $totale=Anagrafica::where('user_id', Auth::user()->id)->where('avanzamento','concluso')->get()->count();
         $surveys=Survey::all();
-
+        // $surveys=Survey::with('questions')->get();
+        // $questions=Question::with('answer')->get();
+        // dd($questions);
         return view('agent.anagrafica.index', compact('page_title', 'page_description', 'anagrafiche','surveys','totale'));
     }
 
@@ -39,9 +42,20 @@ class AnagraficaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $page_title = 'Avvia Survey';
+        $page_description = 'Some description for the page';
+        $anagrafica = Anagrafica::find($id);
+        $surveys = Survey::all();
+        // $answers=Answer::where('survey_id',$anagrafica->survey_id)->where('user_id',Auth::user()->id)->where('anagrafica_id', $anagrafica->id)->get();
+        $forms=Form::where('survey_id',$anagrafica->survey_id)->where('user_id',Auth::user()->id)->where('anagrafica_id', $anagrafica->id)->get();
+
+
+        $survey=Survey::find($anagrafica->survey_id);
+        // $questions=Question::with('answers')->where('survey_id','=',$anagrafica->survey_id)->get();
+        $questions=Question::where('survey_id','=',$anagrafica->survey_id)->get();
+        return view('agent.anagrafica.create', compact('page_title', 'page_description', 'anagrafica','survey','surveys','questions','forms'));
     }
 
     /**
@@ -89,6 +103,7 @@ class AnagraficaController extends Controller
         $anagrafica->survey_id=$request['survey_id'];
 
 
+
         $anagrafica->save();
 
 
@@ -129,9 +144,10 @@ class AnagraficaController extends Controller
         $page_description = 'Some description for the page';
         $anagrafica = Anagrafica::find($id);
         $surveys = Survey::all();
-        $answers=Answer::where('survey_id',$anagrafica->survey_id)->get();
+        $answers=Answer::where('survey_id',$anagrafica->survey_id)->where('user_id',Auth::user()->id)->where('anagrafica_id', $anagrafica->id)->get();
+        //dd($answers);
         $survey=Survey::find($anagrafica->survey_id);
-        $questions=Question::where('survey_id','=',$anagrafica->survey_id)->get();
+        $questions=Question::with('answers')->where('survey_id','=',$anagrafica->survey_id)->get();
         return view('agent.anagrafica.edit', compact('page_title', 'page_description', 'anagrafica','survey','surveys','questions','answers'));
     }
 

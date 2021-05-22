@@ -55,13 +55,13 @@
 
                                                     @method('delete')
                                                     @csrf
-                                                    <a href="{{route('anagrafica.edit', $anagrafica->id )}}"
+                                                    {{-- <a href="{{route('anagrafica.edit', $anagrafica->id )}}"
                                                         class="btn btn-icon btn-light btn-hover-primary btn-sm"
                                                         title="Visualizza">
                                                         <span class="svg-icon svg-icon-md">
                                                             <i class="fa fa-cog icon-gradient bg-mean-fruit"> </i>
                                                         </span>
-                                                    </a>
+                                                    </a> --}}
                                                     <a href="{{route('answer.risposte', $anagrafica->id )}}"
                                                         class="btn btn-icon btn-light btn-hover-primary btn-sm"
                                                         title="Avvia">

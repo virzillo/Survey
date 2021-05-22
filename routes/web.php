@@ -49,10 +49,13 @@ Route::group(['middleware' => ['role:super-admin|agente']], function () {
     Route::delete('/anagrafica/{id}', [App\Http\Controllers\AnagraficaController::class, 'destroy'])->name('anagrafica.destroy');
     Route::put('/anagrafica/{anagrafica}', [App\Http\Controllers\AnagraficaController::class, 'update'])->name('anagrafica.update');
     Route::get('/anagrafica/{id}/edit', [App\Http\Controllers\AnagraficaController::class, 'edit'])->name('anagrafica.edit');
+    Route::get('/anagrafica/{id}/create', [App\Http\Controllers\AnagraficaController::class, 'create'])->name('anagrafica.create');
+
     // Route::get('/domande', [App\Http\Controllers\SurveyController::class, 'domande'])->name('domande');
 
     Route::post('/answer', [App\Http\Controllers\AnswerController::class, 'store'])->name('answer.store');
-    Route::get('/answer/{answers}', [App\Http\Controllers\AnswerController::class, 'risposte'])->name('answer.risposte');
+    Route::get('/answer/{answer}', [App\Http\Controllers\AnswerController::class, 'risposte'])->name('answer.risposte');
+    Route::post('/form', [App\Http\Controllers\FormController::class, 'store'])->name('form.store');
 
     // Route::post('/survey/inseriscidomande', [App\Http\Controllers\SurveyController::class, 'inseriscidomande'])->name('survey.inseriscidomande');
     // Route::get('/agenti', [App\Http\Controllers\AgentController::class, 'index'])->name('agenti');

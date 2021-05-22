@@ -212,7 +212,7 @@
                                                             <i class="fa fa-cog icon-gradient bg-mean-fruit"> </i>
                                                         </span>
                                                     </a>
-                                                    <a href="{{route('anagrafica.edit', $anagrafica->id )}}"
+                                                    <a href="{{route('anagrafica.create', $anagrafica->id )}}"
                                                         class="btn btn-icon btn-light btn-hover-primary btn-sm"
                                                         title="Avvia">
                                                         <span class="svg-icon svg-icon-md">

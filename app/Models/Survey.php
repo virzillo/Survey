@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Form;
 use App\Models\Question;
 use App\Models\Anagrafica;
 use Illuminate\Database\Eloquent\Model;
@@ -29,9 +30,9 @@ class Survey extends Model
     //   return $this->belongsTo(User::class);
     // }
 
-    // public function answers() {
-    //   return $this->hasMany(Answer::class);
-    // }
+    public function forms() {
+      return $this->hasMany(Form::class);
+    }
 
 
 }
