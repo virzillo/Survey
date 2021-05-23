@@ -7,6 +7,7 @@ use App\Models\Answer;
 use App\Models\Survey;
 use App\Models\Question;
 use App\Models\Anagrafica;
+use App\Models\SurveyUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -30,8 +31,9 @@ class AnagraficaController extends Controller
         $page_description = 'Some description for the page';
         $anagrafiche = Anagrafica::where('user_id', Auth::user()->id)->get();
         $totale=Anagrafica::where('user_id', Auth::user()->id)->where('avanzamento','concluso')->get()->count();
-        dd($totale);
-        $surveys=Survey::all();
+        // dd($totale);
+        $surveys=Survey::with('users')->get();
+
         // $surveys=Survey::with('questions')->get();
         // $questions=Question::with('answer')->get();
         // dd($questions);
@@ -67,6 +69,7 @@ class AnagraficaController extends Controller
      */
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'nominativo_struttura' => 'required|min:2|string',
             'potenziale_struttura' => 'required|min:1|string',
@@ -124,6 +127,11 @@ class AnagraficaController extends Controller
 
         $anagrafica->save();
 
+        //aggiunge relazione
+        $pivot=new SurveyUser;
+        $pivot->survey_id=$request->get('survey_id');
+        $pivot->user_id=$request->get('user_id');
+        $pivot->save();
 
 
         $notification = array(

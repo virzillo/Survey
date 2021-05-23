@@ -39,7 +39,6 @@ class FormController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request);
         $validator = Validator::make($request->all(), [
         //  'survey_id' => 'required|min:1|string',
         //  'question_id' => 'required|string|min:1',

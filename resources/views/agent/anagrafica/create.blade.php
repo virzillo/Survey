@@ -122,8 +122,8 @@
                                     <div class="position-relative form-group"><label for="exampleSelect" class="">Assegna survey disp.</label>
                                         <select name="survey_id" id="survey_id" class="form-control" required>
                                             <option value="{{$anagrafica->survey_id}}">{{$anagrafica->survey->titolo}}</option>
-                                            @foreach ($surveys as $survey)
-                                            <option value="{{$survey->id}}">{{$survey->titolo}}</option>
+                                            @foreach ($surveys as $singolosurvey)
+                                            <option value="{{$singolosurvey->id}}">{{$singolosurvey->titolo}}</option>
                                             @endforeach
                                         </select>
                                     </div>

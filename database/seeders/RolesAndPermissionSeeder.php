@@ -75,7 +75,7 @@ class RolesAndPermissionSeeder extends Seeder
                 'password' => Hash::make('aqswdefr'),
                 ]);
 
-                $user->assignRole('agente');
+            $user->assignRole('agente');
 
     }
 }

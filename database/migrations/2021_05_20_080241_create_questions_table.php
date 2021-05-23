@@ -14,22 +14,35 @@ class CreateQuestionsTable extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
-            $table->id();
 
-            $table->integer('survey_id')->onDelete('cascade');
+            // $table->id();
+            // $table->integer('survey_id')->onDelete('cascade');
             // $table->integer('user_id');
-            $table->string('titolo');
-            $table->string('descrizione')->nullable();
-            $table->string('tipo');
-            $table->string('opzione')->nullable();
+            // $table->string('titolo');
+            // $table->string('descrizione')->nullable();
+            // $table->string('tipo');
+            // $table->string('opzione')->nullable();
             // $table->string('opzione1')->nullable();
             // $table->string('opzione2')->nullable();
             // $table->string('opzione3')->nullable();
             // $table->string('opzione4')->nullable();
             // $table->string('opzione5')->nullable();
             // $table->string('opzione6')->nullable();
-            $table->timestamps();
+            // $table->timestamps();
 
+
+            $table->id();
+
+
+
+            $table->unsignedBigInteger('survey_id');
+            $table->foreign('survey_id')->references('id')->on('surveys');
+
+            $table->string('titolo');
+            $table->string('descrizione')->nullable();
+            $table->string('tipo');
+            $table->string('opzione')->nullable();
+            $table->timestamps();
 
 
         });

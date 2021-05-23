@@ -192,23 +192,24 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body"><h5 class="card-title">Elenco Anagrafiche</h5>
                         <div class="table-responsive">
-                            <table class="mb-0 table table-sm">
+                            {{-- <table class="mb-0 table table-sm" id="tabella"> --}}
+                                <table id="tabella" class="mb-0 table table-sm display" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th hidden>#</th>
                                         <th>Interlocutore</th>
                                         <th>Survey</th>
                                         <th>Nome struttura</th>
                                         <th>Stato</th>
                                         <th>Avanzamento</th>
-                                        <th>Azioni</th>
+                                        <th>Avvia</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($anagrafiche as $anagrafica)
                                         <tr>
-                                            <th scope="row">{{$anagrafica->id}}</th>
-                                            <td>{{$anagrafica->interlocutore}}</td>
+                                            <th scope="row" hidden>{{$anagrafica->id}}</th>
+                                            <td scope="row">{{$anagrafica->interlocutore}}</td>
                                             <td>{{$survey->titolo}}</td>
                                             <td>{{$anagrafica->nominativo_struttura}}</td>
                                             <td>{{$anagrafica->stato}}</td>
@@ -234,13 +235,13 @@
                                                             <i class="fa fa-file-archive icon-gradient bg-happy-itmeo"> </i>
                                                         </span>
                                                     </a>
-                                                    <button type="button"
+                                                    {{-- <button type="button"
                                                         class="btn btn-icon btn-light btn-hover-danger btn-sm "
                                                         id="confirm-delete" onclick="ConfirmDelete()">
                                                         <span class="svg-icon svg-icon-md">
                                                             <i class="fa fa-archive icon-gradient bg-sunny-morning"> </i>
                                                         </span>
-                                                    </button>
+                                                    </button> --}}
 
                                                 </form>
 
@@ -269,5 +270,13 @@
 
 @push('script')
 
+<script>
+    $(document).ready(function() {
+    $('#tabella').DataTable( {
+        responsive: true,
+        "order": [[ 0, "desc" ]]
+        } );
+    } );
+</script>
 
 @endpush
