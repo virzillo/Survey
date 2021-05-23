@@ -5,7 +5,7 @@
     <div class="app-main__inner">
         <div class="app-page-title">
             <div class="page-title-wrapper">
-                <div class="page-title-heading">
+                {{-- <div class="page-title-heading">
                     <div class="page-title-icon">
                         <i class="pe-7s-car icon-gradient bg-mean-fruit">
                         </i>
@@ -15,10 +15,10 @@
                     </div>
                 </div>
                 <div class="page-title-actions">
-                    {{-- <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
+                    <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
                         <i class="fa fa-star"></i>
-                    </button> --}}
-                    {{-- <div class="d-inline-block dropdown">
+                    </button>
+                    <div class="d-inline-block dropdown">
                         <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow xdropdown-toggle btn btn-info">
                             <span class="btn-icon-wrapper pr-2 opacity-7">
                                 <i class="fa fa-business-time fa-w-20"></i>
@@ -26,17 +26,32 @@
                             CREA NUOVO
                         </button>
 
-                    </div> --}}
+                    </div>
+                </div> --}}
+                @foreach ($surveys as $survey)
+                <div class="col-md-4 col-xl-2">
+                    <div class="card mb-3 widget-content bg-arielle-smile">
+                        <div class="widget-content-wrapper text-white">
+                            <div class="widget-content-left">
+                                <div class="widget-heading">{{$survey->titolo}}</div>
+                                <div class="widget-subheading">Da completare</div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-white"><span>{{($survey->limite)-$totale}}</span></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                @endforeach
             </div>
         </div>
         <div class="row">
-            @foreach ($surveys as $survey)
+            {{-- @foreach ($surveys as $survey)
             <div class="col-md-6 col-xl-4">
                 <div class="card mb-3 widget-content bg-midnight-bloom">
                     <div class="widget-content-wrapper text-white">
                         <div class="widget-content-left">
-                            <div class="widget-heading">Survey</div>
+                            <div class="widget-heading">{{$survey->titolo}}</div>
                             <div class="widget-subheading">Da completare</div>
                         </div>
                         <div class="widget-content-right">
@@ -45,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+            @endforeach --}}
 
             {{-- <div class="col-md-6 col-xl-4">
                 <div class="card mb-3 widget-content bg-arielle-smile">
@@ -98,13 +113,13 @@
 
                         <div class="form-row">
                             <div class="col-md-4">
-                                <div class="position-relative form-group"><label for="" class="">Nominativo struttura</label>
-                                    <input name="nominativo_struttura" id="nominativo_struttura" placeholder="" type="text" class="form-control" required></div>
-                            </div>
-                            <div class="col-md-4">
                                 <div class="position-relative form-group"><label for="" class="">Interlocutore</label>
                                     <input name="interlocutore" id="interlocutore" placeholder="inserisci nome e cognome" type="text" class="form-control" required>
                                 </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="position-relative form-group"><label for="" class="">Nominativo struttura</label>
+                                    <input name="nominativo_struttura" id="nominativo_struttura" placeholder="" type="text" class="form-control" required></div>
                             </div>
                             <div class="col-md-2">
                                 <div class="position-relative form-group"><label for="" class="">Percentuale Cessione</label>
@@ -181,11 +196,11 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nome struttura</th>
                                         <th>Interlocutore</th>
+                                        <th>Survey</th>
+                                        <th>Nome struttura</th>
                                         <th>Stato</th>
                                         <th>Avanzamento</th>
-
                                         <th>Azioni</th>
                                     </tr>
                                     </thead>
@@ -193,9 +208,9 @@
                                         @foreach ($anagrafiche as $anagrafica)
                                         <tr>
                                             <th scope="row">{{$anagrafica->id}}</th>
-                                            <td>{{$anagrafica->nominativo_struttura}}</td>
                                             <td>{{$anagrafica->interlocutore}}</td>
-
+                                            <td>{{$survey->titolo}}</td>
+                                            <td>{{$anagrafica->nominativo_struttura}}</td>
                                             <td>{{$anagrafica->stato}}</td>
                                             <td>{{$anagrafica->avanzamento}}</td>
 
@@ -205,15 +220,15 @@
 
                                                     @method('delete')
                                                     @csrf
-                                                    <a href="{{route('anagrafica.edit', $anagrafica->id )}}"
+                                                    {{-- <a href="{{route('anagrafica.edit', $anagrafica->id )}}"
                                                         class="btn btn-icon btn-light btn-hover-primary btn-sm"
                                                         title="Visualizza">
                                                         <span class="svg-icon svg-icon-md">
                                                             <i class="fa fa-cog icon-gradient bg-mean-fruit"> </i>
                                                         </span>
-                                                    </a>
+                                                    </a> --}}
                                                     <a href="{{route('anagrafica.create', $anagrafica->id )}}"
-                                                        class="btn btn-icon btn-light btn-hover-primary btn-sm"
+                                                        class="btn btn-icon btn-light btn-hover-primary btn"
                                                         title="Avvia">
                                                         <span class="svg-icon svg-icon-md">
                                                             <i class="fa fa-file-archive icon-gradient bg-happy-itmeo"> </i>

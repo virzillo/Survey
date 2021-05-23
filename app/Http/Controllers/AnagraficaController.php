@@ -30,6 +30,7 @@ class AnagraficaController extends Controller
         $page_description = 'Some description for the page';
         $anagrafiche = Anagrafica::where('user_id', Auth::user()->id)->get();
         $totale=Anagrafica::where('user_id', Auth::user()->id)->where('avanzamento','concluso')->get()->count();
+        dd($totale);
         $surveys=Survey::all();
         // $surveys=Survey::with('questions')->get();
         // $questions=Question::with('answer')->get();
@@ -76,6 +77,7 @@ class AnagraficaController extends Controller
             'mezzi_diagnostici' => 'required|string|min:1',
         ]);
 
+        //VALIDAZIONE DATI CONTROLLO ERRORI
         if ($validator->fails()) {
 
             $notification = array(
@@ -88,6 +90,22 @@ class AnagraficaController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
+
+        //CONTROLLO ANAGRAFICA GIA ASSOCIATA A SURVEY
+        $controllo=Anagrafica::where('interlocutore',$request->get('interlocutore'))->where('survey_id',$request->get('survey_id'))->count();
+        if ($controllo>0) {
+
+            $notification = array(
+                'message' => 'Anagrafica già associata al survey selezionato.',
+                'alert-type' => 'error'
+            );
+
+            return back()
+                        ->with($notification)
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
 
         $anagrafica= new Anagrafica;
         $anagrafica->nominativo_struttura=$request['nominativo_struttura'];
